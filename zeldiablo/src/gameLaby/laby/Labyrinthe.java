@@ -193,4 +193,20 @@ public class Labyrinthe {
         // utilise le tableau de boolean
         return this.murs[x][y];
     }
+
+    /**
+     * deplace le monstre aléatoirement
+     * gere la collision avec les murs et avec le personnage
+     */
+    public void deplacerMonstre() {
+    }
+
+    /**
+     * vérifie si le monstre est en x,y
+     * @param x
+     * @param y
+     * @return
+     */
+    public boolean getMonstre(int x, int y) {
+    }
 }
