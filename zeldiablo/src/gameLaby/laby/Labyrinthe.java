@@ -18,6 +18,9 @@ public class Labyrinthe {
     public static final char PJ = 'P';
     public static final char VIDE = '.';
 
+    // Constante ajoutée
+    public static final char MONSTRE = 'M';
+
     /**
      * constantes actions possibles
      */
@@ -35,6 +38,11 @@ public class Labyrinthe {
      * les murs du labyrinthe
      */
     public boolean[][] murs;
+
+    /**
+     * le monstre du labyrinthe
+     */
+    public Monstre monstre;
 
     /**
      * retourne la case suivante selon une actions
@@ -89,6 +97,7 @@ public class Labyrinthe {
 
         // creation labyrinthe vide
         this.murs = new boolean[nbColonnes][nbLignes];
+        this.monstre = null;
         this.pj = null;
 
         // lecture des cases
@@ -115,6 +124,9 @@ public class Labyrinthe {
                         this.murs[colonne][numeroLigne] = false;
                         // ajoute PJ
                         this.pj = new Perso(colonne, numeroLigne);
+                        break;
+                    case MONSTRE:
+                        this.monstre = new Monstre(colonne, numeroLigne);
                         break;
 
                     default:
@@ -145,12 +157,17 @@ public class Labyrinthe {
         // calcule case suivante
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
-        // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]]) {
+        // si c'est pas un mur ou un monstre, on effectue le deplacement
+        if (!this.murs[suivante[0]][suivante[1]] && !getMonstre(suivante[0], suivante[1])) {
             // on met a jour personnage
             this.pj.x = suivante[0];
             this.pj.y = suivante[1];
         }
+
+        // deplace le monstre avec une proba de 30%
+        double rand = Math.random();
+        if (rand <= 0.3)
+            deplacerMonstre();
     }
 
 
@@ -199,14 +216,46 @@ public class Labyrinthe {
      * gere la collision avec les murs et avec le personnage
      */
     public void deplacerMonstre() {
+        // case courante
+        int[] courante = {this.monstre.x, this.monstre.y};
+
+        // choix aléatoire de l'action
+        int choix = (int)(Math.random() * 4);
+        String action = "";
+
+        switch (choix){
+            case 0:
+                action = HAUT;
+                break;
+            case 1:
+                action = BAS;
+                break;
+            case 2:
+                action = DROITE;
+                break;
+            case 3:
+                action = GAUCHE;
+                break;
+        }
+
+        // calcule case suivante
+        int[] suivante = getSuivant(courante[0], courante[1], action);
+
+        // si c'est pas un mur ou le joueur, on effectue le deplacement
+        if (!this.murs[suivante[0]][suivante[1]] && !this.pj.etrePresent(suivante[0], suivante[1])) {
+            // on met a jour le monstre
+            this.monstre.x = suivante[0];
+            this.monstre.y = suivante[1];
+        }
     }
 
     /**
-     * vérifie si le monstre est en x,y
+     *
      * @param x
      * @param y
      * @return
      */
     public boolean getMonstre(int x, int y) {
+        return this.monstre.etrePresent(x, y);
     }
 }
