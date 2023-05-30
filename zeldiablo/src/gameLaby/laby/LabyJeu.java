@@ -9,6 +9,10 @@ public class LabyJeu implements Jeu {
 
     private Labyrinthe laby;
 
+    public LabyJeu() throws IOException {
+        Labyrinthe laby = new Labyrinthe("labySimple/laby1.txt");
+    }
+
     public void update(double secondes, Clavier clavier) {
         if (clavier.haut)
             this.laby.deplacerPerso(Labyrinthe.HAUT);
@@ -23,11 +27,7 @@ public class LabyJeu implements Jeu {
     }
 
     public void init() {
-        try {
-            Labyrinthe laby = new Labyrinthe("labySimple/laby1.txt");
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement du labyrinthe");
-        }
+        // TODO
     }
 
     public boolean etreFini() {
