@@ -37,10 +37,8 @@ public class LabyDessin implements DessinJeu {
                     gc.fillRect(x, y, 20, 20);
                 }
                 x = x+20;
-                if (x<=canvas.getWidth()) {
-                    y = y+20;
-                }
             }
+            y =y+20;
         }
 
         //dessin joueur
