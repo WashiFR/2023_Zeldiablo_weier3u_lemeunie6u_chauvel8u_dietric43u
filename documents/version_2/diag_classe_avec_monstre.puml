@@ -34,12 +34,14 @@ class Labyrinthe{
 + <static> MUR : char
 + <static> PJ : char
 + <static> VIDE : char
++ <static> MONSTRE : char
 + <static> HAUT : string
 + <static> BAS : string
 + <static> GAUCHE : string
 + <static> DROITE : string
 + pj : Perso
 + murs : boolean[][]
++ monstre : Monstre
 + getSuivant(x : int, y : int, String : action) : int[]
 + Labyrinthe(nom : String)
 + deplacerPerso(action : String)
@@ -51,15 +53,21 @@ class Labyrinthe{
 + getMonstre(x : int, y : int) : boolean
 }
 Labyrinthe "1" -> "1" Perso : +pj
+Labyrinthe "1" -> "1" Monstre : +monstre
 
 class MainLaby{
 - <static> main(args : String[])
 }
+MainLaby -> LabyDessin : create
+MainLaby -> LabyJeu : create
 
 class Monstre{
 + x:int
 + y:int
 + Monstre(dx:int,dy:int)
++ etrePresent(dx:int,dy:int) : boolean
++ getX() : int
++ getY() : int
 }
 
 class Perso{

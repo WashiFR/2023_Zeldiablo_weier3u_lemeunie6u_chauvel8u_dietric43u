@@ -9,6 +9,10 @@ out/
 *.class
 *.db
 
+zeldiablo/.idea/
+zeldiablo/.iml
+zeldiablo/out/
+
 ### Eclipse ###
 .apt_generated
 .classpath
