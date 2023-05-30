@@ -1,0 +1,14 @@
+Durant la préparation de la Sae nous avons :
+    -créer le dépôt git pour que tout le monde au sein du groupe puisse récupérer et travailler sur le même projet.
+    -appréhender le sujet afin de savoir ce que nous devions faire/améliorer et implémenter.
+    -chercher comment implémenter le monstre dans notre labyrinthe de la meilleure des manières et avec des méthodes les plus efficaces pour ensuite créer nos schémas UML et enfin coder.
+    -créer un diagramme de classe du projet avec l'ajout du monstre et de ses méthodes correspondantes dont on aura besoin plus tard.
+    -créer plusieurs diagrammes de séquence pour les différentes méthodes du monstre.
+    -implémenter le monstre en java grâce aux diagrammes de classe et de séquence fait ultérieurement.
+    -créer des tests pour vérifier que le monstre fonctionne correctement.
+
+Pour cette partie nous nous sommes un petit peu emmêlés les pinceaux, car nous n'avions jamais réellement travaillé à quatre sur un projet en simultanée.
+Nous avons donc eu quelques difficultés à nous organiser et à nous répartir les tâches. Mais quand nous avons réussi à nous organiser nous avons pu avancer plus rapidement et efficacement.
+Nous avons aussi eu quelques difficultés à comprendre le sujet et, à savoir ce que nous devions faire exactement. Mais la création des diagrammes de classe et de séquence nous a permis de mieux comprendre le sujet et de savoir ce que nous devions faire.
+Pour ce qui est du code Java il était plus simple de l'écrire après avoir fait toutes les parties dans leur ensemble, car nous savions ce que nous devions faire et comment nous devions le faire.
+Même si nous devions faire cette partie dans un laps de temps plus court elle a été bénéfique pour la compréhension de la suite de la Sae. Nous avons une bonne base des problèmes que nous allons rencontrer et appréhendons donc mieux le sujet.

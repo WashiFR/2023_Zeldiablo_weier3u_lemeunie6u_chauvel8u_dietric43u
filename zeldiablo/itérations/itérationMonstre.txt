@@ -1,0 +1,14 @@
+Pour l'itération du monstre sur la préparation de la SAE nous avons partagé les tâches entre étudiants du groupe.
+
+Les fonctionnalités correspondant à l'ajout d'un monstre sont une apparence qui le différencie du personnage, un déplacement aléatoire dans le labyrinthe
+        et une collision avec le personnage qui le fait disparaître.
+        Si le personnage meurt relancement du jeu.
+
+        Les critères de validation sont qu'il ne doit pas passer aux travers des murs, il doit être différent du personnage, il doit disparaître quand il touche le personnage et doit bouger dans le labyrinthe. .
+        Il faut vérifier que le jeu ne continue pas et que le personnage n'est plus présent quand il meurt.
+
+Le diagramme de classe représentant les classes après l'ajout de la classe monstre a été fait par Corentin.
+Les diagrammes de séquences représentant les fonctionnalités ont été fait par Clément.
+L'implémentation de la classe Monstre et des modifications à faire sur les autres classes ont été faites par Loris et Gaëtan.
+Les tests unitaires ont été fait par Clément.
+Le bilan de cette itération et sa description ont été fait par Gaëtan.
