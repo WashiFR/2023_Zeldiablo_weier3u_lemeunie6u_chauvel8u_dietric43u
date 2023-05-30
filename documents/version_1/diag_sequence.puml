@@ -1,5 +1,16 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-Main ->  : deplacerPerso()
+participant Main
+participant "l:Labyrinthe" as labyrinthe
+create "p:Perso" as perso
+Main -> perso : new
+Main -> labyrinthe : deplacerPerso(GAUCHE)
+activate labyrinthe
+labyrinthe -> perso : getSuivant(int x, int y, GAUCHE)
+activate perso
+perso -> labyrinthe : [x--, y]
+deactivate perso
+Main <-- labyrinthe
+deactivate labyrinthe
 @enduml
