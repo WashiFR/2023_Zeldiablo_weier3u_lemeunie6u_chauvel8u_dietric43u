@@ -10,7 +10,11 @@ public class LabyJeu implements Jeu {
     private Labyrinthe laby;
 
     public LabyJeu() throws IOException {
-        Labyrinthe laby = new Labyrinthe("labySimple/laby1.txt");
+        try {
+            Labyrinthe laby = new Labyrinthe("labySimple/laby1.txt");
+        } catch (IOException e) {
+            System.out.println("Erreur lors du chargement du labyrinthe");
+        }
     }
 
     public void update(double secondes, Clavier clavier) {
