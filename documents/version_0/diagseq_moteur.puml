@@ -1,4 +1,4 @@
-@startuml
+    @startuml
 hide footbox
 
 participant "main:Main" as main
