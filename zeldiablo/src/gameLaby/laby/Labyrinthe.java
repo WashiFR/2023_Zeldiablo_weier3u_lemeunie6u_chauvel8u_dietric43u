@@ -181,9 +181,7 @@ public class Labyrinthe {
      *
      * @return
      */
-    public int getLength() {
-        return murs.length;
-    }
+    public int getLength() {return murs.length;}
 
     /**
      * return mur en (i,j)
