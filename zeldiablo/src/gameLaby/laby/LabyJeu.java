@@ -5,18 +5,24 @@ import moteurJeu.Jeu;
 
 import java.io.IOException;
 
+/**
+ * Représente un jeu de labyrinthe
+ */
 public class LabyJeu implements Jeu {
 
+    /**
+     * Attribut laby de type Labyrinthe
+     */
     private Labyrinthe laby;
 
+    /**
+     * Constructeur de LabyJeu
+     */
     public LabyJeu() throws IOException {
-        try {
-            Labyrinthe laby = new Labyrinthe("labySimple/laby1.txt");
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement du labyrinthe");
-        }
+        laby = new Labyrinthe("labySimple/laby1.txt");
     }
 
+    @Override
     public void update(double secondes, Clavier clavier) {
         if (clavier.haut)
             this.laby.deplacerPerso(Labyrinthe.HAUT);
@@ -30,10 +36,12 @@ public class LabyJeu implements Jeu {
         // TODO : update secondes
     }
 
+    @Override
     public void init() {
         // TODO
     }
 
+    @Override
     public boolean etreFini() {
         // TODO
         return false;

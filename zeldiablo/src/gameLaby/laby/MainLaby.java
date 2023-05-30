@@ -4,6 +4,9 @@ import moteurJeu.MoteurJeu;
 
 import java.io.IOException;
 
+/**
+ * classe qui lance le jeu du labyrinthe
+ */
 public class MainLaby {
     
     public static void main(String[] args) throws IOException {
@@ -21,7 +24,5 @@ public class MainLaby {
 
         // lancement du jeu
         MoteurJeu.launch(jeuLaby, dessinLaby);
-
     }
-    
 }
