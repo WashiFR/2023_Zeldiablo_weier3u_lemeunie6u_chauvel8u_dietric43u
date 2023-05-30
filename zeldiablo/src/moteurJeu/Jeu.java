@@ -1,6 +1,5 @@
 package moteurJeu;
 
-
 /**
  * modele de jeu
  */
