@@ -7,17 +7,40 @@ import java.io.IOException;
 
 public class LabyJeu implements Jeu {
 
+    private Labyrinthe laby;
+
     public void update(double secondes, Clavier clavier) {
-        // TODO
+        if (clavier.haut)
+            this.laby.deplacerPerso(Labyrinthe.HAUT);
+        if (clavier.bas)
+            this.laby.deplacerPerso(Labyrinthe.BAS);
+        if (clavier.gauche)
+            this.laby.deplacerPerso(Labyrinthe.GAUCHE);
+        if (clavier.droite)
+            this.laby.deplacerPerso(Labyrinthe.DROITE);
+
+        // TODO : update secondes
     }
 
-    public void init() throws IOException {
-        Labyrinthe laby = new Labyrinthe("labySimple/laby1.txt");
+    public void init() {
+        try {
+            Labyrinthe laby = new Labyrinthe("labySimple/laby1.txt");
+        } catch (IOException e) {
+            System.out.println("Erreur lors du chargement du labyrinthe");
+        }
     }
 
     public boolean etreFini() {
         // TODO
         return false;
+    }
+
+    /**
+     * Retourne le labyrinthe
+     * @return labyrinthe
+     */
+    public Labyrinthe getLaby() {
+        return this.laby;
     }
 
 }
