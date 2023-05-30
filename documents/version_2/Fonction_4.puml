@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant Main
+participant "l:Labyrinthe" as l
+participant "p:Perso" as p
+create l
+Main -> l : new
+Main -> l : deplacerMonstre()
+activate l
+l -> l : getSuivant(int x, int y, String action)
+activate l
+l --> l : int[] (coordonnées)
+deactivate l
+l -> p : etrePresent(int dx, int dy)
+alt x = dx and y = dy
+activate p
+p --> l : true
+else x != dx or y != dy
+p --> l : false
+end
+deactivate p
+l --> Main : void
+deactivate l
+
+
+@enduml

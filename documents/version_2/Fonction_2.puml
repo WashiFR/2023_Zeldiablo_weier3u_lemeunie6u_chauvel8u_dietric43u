@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant Main
+participant "l:LabyDessin" as laby
+participant "lab:Labyrinthe" as lab
+participant "m:Monstre" as m
+create laby
+Main -> laby : new
+Main -> laby : dessinerJeu(Jeu jeu, Canvas canvas)
+activate laby
+laby -> lab : getMonstre(int i, int j)
+activate lab
+lab -> m : etrePresent(int x, int y)
+alt x = dx and y = dy
+activate m
+m --> lab : true
+else x != dx or y != dy
+m --> lab : false
+end
+deactivate m
+lab --> laby : true or false
+deactivate lab
+laby --> Main : void
+deactivate laby
+
+
+@enduml

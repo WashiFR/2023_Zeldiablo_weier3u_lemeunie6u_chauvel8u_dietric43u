@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant Main
+participant "l:Labyrinthe" as labyrinthe
+participant "m:Monstre" as monstre
+create labyrinthe
+Main -> labyrinthe : new
+create monstre
+labyrinthe -> monstre : new
+activate monstre
+deactivate monstre
+monstre -> monstre : Monstre(int dx, int dy)
+
+@enduml
