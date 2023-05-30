@@ -4,7 +4,7 @@ package gameArkanoid;
 import moteurJeu.MoteurJeu;
 
 /**
- * lance un jeu de type arkanoid en 10 frames par second
+ * lance un jeu de type arkanoid en 10 frames par secdqdond
  */
 public class MainArkanoidLent {
 
