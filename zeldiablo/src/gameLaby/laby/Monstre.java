@@ -21,11 +21,11 @@ public class Monstre {
     }
 
     /**
-     * permet de savoir si le personnage est en x,y
+     * permet de savoir si le monstre est en x,y
      *
      * @param dx position testee
      * @param dy position testee
-     * @return true si le personnage est bien en (dx,dy)
+     * @return true si le monstre est bien en (dx,dy)
      */
     public boolean etrePresent(int dx, int dy) {
 
@@ -37,18 +37,16 @@ public class Monstre {
     // ############################################
 
     /**
-     * @return position x du personnage
+     * @return position x du monstre
      */
     public int getX() {
-        // getter
         return this.x;
     }
 
     /**
-     * @return position y du personnage
+     * @return position y du monstre
      */
     public int getY() {
-        //getter
         return this.y;
     }
 }
