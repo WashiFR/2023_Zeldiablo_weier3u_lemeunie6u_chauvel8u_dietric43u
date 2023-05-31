@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant Main as m
+participant "jeuLaby:LabyJeu" as j
+participant "laby:Labyrinthe" as l
+participant "amulette:Amulette" as a
+m -> j : update(double secondes, Clavier clavier)
+activate j
+j -> l : deplacerPerso(Clavier clavier)
+activate l
+l -> a : etrePresent(int dx, int dy)
+activate a
+alt this.x = dx and this.y = dy
+a --> l : true (this.amulette = null)
+else
+a --> l : false
+end
+deactivate a
+l --> j : void
+deactivate l
+j --> m : void
+deactivate j
+
+
+
+
+@enduml

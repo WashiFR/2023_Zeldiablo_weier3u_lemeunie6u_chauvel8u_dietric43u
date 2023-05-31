@@ -195,10 +195,11 @@ public class Labyrinthe {
         if (rand <= 0.3)
             deplacerMonstre();
 
-        if (((this.pj.getX() == this.monstre.getX()-1) && (this.pj.getY() == this.monstre.getY())) ||
-                ((this.pj.getX() == this.monstre.getX()+1) && (this.pj.getY() == this.monstre.getY())) ||
-                ((this.pj.getY() == this.monstre.getY()-1) && (this.pj.getX() == this.monstre.getX()))||
-                ((this.pj.getY() == this.monstre.getY()+1) && (this.pj.getX() == this.monstre.getX()))) {
+        // attaque du monstre si le personnage est a cote
+        if (((this.pj.getX() == this.monstre.getX() - 1) && (this.pj.getY() == this.monstre.getY())) ||
+                ((this.pj.getX() == this.monstre.getX() + 1) && (this.pj.getY() == this.monstre.getY())) ||
+                ((this.pj.getY() == this.monstre.getY() - 1) && (this.pj.getX() == this.monstre.getX())) ||
+                ((this.pj.getY() == this.monstre.getY() + 1) && (this.pj.getX() == this.monstre.getX()))) {
             this.monstre.attaquer(this.pj);
         }
     }
@@ -213,6 +214,11 @@ public class Labyrinthe {
         return amuletteTrouvee && this.pj.x == this.depart[0] && this.pj.y == this.depart[1];
     }
 
+    /**
+     * Le jeu est perdu si le personnage n'a plus de pv
+     *
+     * @return jeu perdu
+     */
     public boolean etrePerdu() {
         return this.pj.getPV() <= 0;
     }
@@ -289,10 +295,13 @@ public class Labyrinthe {
         }
     }
 
+
     /**
-     * @param x
-     * @param y
-     * @return
+     * return true si le monstre est en (x,y)
+     *
+     * @param x coordonnee x
+     * @param y coordonnee y
+     * @return monstre en (x,y)
      */
     public boolean getMonstre(int x, int y) {
         return this.monstre.etrePresent(x, y);
