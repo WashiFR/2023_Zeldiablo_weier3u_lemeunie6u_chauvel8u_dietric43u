@@ -1,0 +1,86 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+package moteurJeu {
+interface DessinJeu{
++ dessinerJeu(jeu:Jeu, canvas:Canvas)
+}
+
+interface Jeu{
++update(secondes : double, clavier : Clavier)
++init()
++etreFini() : boolean
+}
+}
+
+package gameLaby.laby {
+class LabyImage{
+- <static> MUR : String
+- <static> JOUEUR : String
+- <static> MONSTRE : String
+- <static> SOL : String
+- <static> TAILLE_CASE : double
++ dessinerJeu(jeu:Jeu, canvas:Canvas)
+}
+DessinJeu <.. LabyImage
+
+class LabyJeu{
++LabyJeu()
++update(secondes : double, clavier : Clavier)
++init()
++etreFini() : boolean
++getLaby() : Labyrinthe
+}
+Jeu <.. LabyJeu
+LabyJeu "1" -> "1" Labyrinthe: -laby
+
+class Labyrinthe{
++ <static> MUR : char
++ <static> PJ : char
++ <static> VIDE : char
++ <static> MONSTRE : char
++ <static> HAUT : string
++ <static> BAS : string
++ <static> GAUCHE : string
++ <static> DROITE : string
++ pj : Perso
++ murs : boolean[][]
++ monstre : Monstre
++ getSuivant(x : int, y : int, String : action) : int[]
++ Labyrinthe(nom : String)
++ deplacerPerso(action : String)
++ etreFini() : boolean
++ getLengthY() : int
++ getLength() : int
++ getMur(x : int, y : int) : boolean
++ deplacerMonstre()
++ getMonstre(x : int, y : int) : boolean
+}
+Labyrinthe "1" -> "1" Perso : +pj
+Labyrinthe "1" -> "1" Monstre : +monstre
+
+class MainLaby{
+- <static> main(args : String[])
+}
+MainLaby -> LabyImage : create
+MainLaby -> LabyJeu : create
+
+class Monstre{
++ x:int
++ y:int
++ Monstre(dx:int,dy:int)
++ etrePresent(dx:int,dy:int) : boolean
++ getX() : int
++ getY() : int
+}
+
+class Perso{
++ x:int
++ y:int
++ Perso(dx:int, dy:int)
++ etrePresent(dx:int, dy:int) : boolean
++ getX() : int
++ getY() : int
+}
+}
+@enduml
