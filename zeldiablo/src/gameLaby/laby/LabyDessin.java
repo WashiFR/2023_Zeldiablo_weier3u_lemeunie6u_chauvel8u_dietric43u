@@ -9,6 +9,7 @@ import moteurJeu.DessinJeu;
 /**
  * permet d'afficher un jeu de type Labyrinthe
  */
+
 public class LabyDessin implements DessinJeu {
 
     /**
@@ -54,7 +55,7 @@ public class LabyDessin implements DessinJeu {
         gc.fillOval(px * TAILLE_CASE, py * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
 
         //dessin Amulette
-<<<<<<< Updated upstream
+
         if (laby.amulette != null) {
             gc.setFill(Color.YELLOW);
             double ax = laby.amulette.getX();

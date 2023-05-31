@@ -1,0 +1,21 @@
+Pour la deuxième itération, nous avons choisi de faire la partie sur la gestion de la fin du jeu.
+Nous avons choisi de faire cette partie, car nous voulions avoir un début et une fin à notre jeu.
+Dans cette itération, nous avons décidé de faire les quatre fonctionnalités présentes dans la partie
+six car si nous faisions l'acquisition de l'amulette sans sa mise en place et une seule possibilité de fin la mort ou la victoire cela n'aurait pas été logique
+
+ Pour la mort du héros, nous avons tout d'abord pensé qu'il fallait un attribut qui correspondrait à
+ la vie du personnage. Cet attribut peut changer en fonction de si le personnage est dans des cases adjacentes au monstre.
+ Cela pourrait représenter une portée d'attaque du monstre. La vie est mise à 5 au début du jeu et si elle tombe à 0 le personnage meurt.
+
+ Pour la mise en place de l'amulette nous étions d'accord pour créer une classe Amulette qui aura en paramètres ses coordonnées et avec des méthodes pour qu'on puisse récupérer ses coordonnées et
+ savoir si l'amulette est à des coordonnées données en paramètre qui se nommerait estPrésent().
+L'amulette sera aussi mise dans la classe Labyrinthe pour qu'on puisse la récupérer et la mettre dans une case du labyrinthe et aussi afin d'avoir une représentation graphique de l'amulette dans le labyrinthe.
+
+Pour l'acquisition de l'amulette le moyen le plus facile qu'il nous est venu à l'esprit est de faire un attribut booléen qui sera à true si l'amulette a été récupérée ou false sinon.
+Quand on déplace le personnage grâce à la méthode deplacerPerso() la méthode vérifie si le personnage est sur l'amulette et si c'est le cas elle met l'attribut booléen à true.
+
+
+Enfin pour terminer cette itération et que notre jeu est un sens, nous avons décidé de laisser une possibilité de victoire en faisant gagner le joueur si le personnage revient sur la case de départ avec l'amulette.
+L'attribut booléen qui permet de savoir si on a l'amulette nous aide aussi dans cette partie, car on peut simplement vérfier si le personnage est sur la case de départ à l'amulette avec le booléen a true.
+L'implémentation d'une classe etreFini() qui permet de vérifier cela est la meilleure solution que nous avons pu trouver.
+
