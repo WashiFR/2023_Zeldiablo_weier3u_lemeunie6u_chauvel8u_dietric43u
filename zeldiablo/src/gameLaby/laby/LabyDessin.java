@@ -57,7 +57,7 @@ public class LabyDessin implements DessinJeu {
         gc.setFill(Color.YELLOW);
         double ax = laby.amulette.getX();
         double ay = laby.amulette.getY();
-        gc.fillOval(ax * TAILLE_CASE, ay * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+        gc.fillOval(ax * TAILLE_CASE, ay * TAILLE_CASE / 2, TAILLE_CASE / 2, TAILLE_CASE);
 
     }
 }
