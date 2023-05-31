@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant Main as m
+participant "jeuLaby:LabyJeu" as j
+participant "laby:Labyrinthe" as l
+
+m -> j : etreFini()
+activate j
+j -> l : etreFini()
+activate l
+alt amuletteTrouve && this.pj.x = this.depart[0] && this.pj.y == this.depart[1]
+l --> j : true
+else
+l --> j : false
+end
+deactivate l
+j --> m : true or false
+deactivate j
+
+
+@enduml

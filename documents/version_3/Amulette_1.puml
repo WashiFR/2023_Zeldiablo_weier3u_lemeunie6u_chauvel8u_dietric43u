@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant Main as m
+participant "jeuLaby:LabyJeu" as j
+participant "laby:Labyrinthe" as l
+participant "amulette:Amulette" as a
+
+create j
+m -> j : new
+create l
+j -> l : new
+create a
+l -> a : new
+
+
+
+
+
+
+
+
+
+
+@enduml

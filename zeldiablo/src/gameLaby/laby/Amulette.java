@@ -1,7 +1,13 @@
 package gameLaby.laby;
 
+/**
+ * gere une amulette situee en x,y
+ */
 public class Amulette {
 
+    /**
+     * position de l'amulette
+     */
     int x, y;
 
 
@@ -27,10 +33,20 @@ public class Amulette {
         return (this.x == dx && this.y == dy);
     }
 
+    /**
+     * Getter de la position de l'amulette selon x
+     *
+     * @return position x de l'amulette
+     */
     public int getX() {
         return this.x;
     }
 
+    /**
+     * Getter de la position de l'amulette selon y
+     *
+     * @return position y de l'amulette
+     */
     public int getY() {
         return this.y;
     }

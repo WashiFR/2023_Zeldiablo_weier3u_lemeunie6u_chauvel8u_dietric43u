@@ -9,6 +9,7 @@ import moteurJeu.DessinJeu;
 /**
  * permet d'afficher un jeu de type Labyrinthe
  */
+
 public class LabyDessin implements DessinJeu {
 
     /**
@@ -34,13 +35,12 @@ public class LabyDessin implements DessinJeu {
 
         //dessin mur
         Labyrinthe laby = labyJeu.getLaby();
-        for (int i = 0; i<laby.getLength(); i++) {
-            for (int j = 0; j<laby.getLengthY(); j++) {
-                if (laby.getMur(i,j)) {
+        for (int i = 0; i < laby.getLength(); i++) {
+            for (int j = 0; j < laby.getLengthY(); j++) {
+                if (laby.getMur(i, j)) {
                     gc.setFill(Color.BLACK);
                     gc.fillRect(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
-                }
-                else if (laby.getMonstre(i, j)) {
+                } else if (laby.getMonstre(i, j)) {
                     gc.setFill(Color.PURPLE);
                     gc.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                 }

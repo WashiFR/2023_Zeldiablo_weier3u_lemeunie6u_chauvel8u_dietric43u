@@ -22,6 +22,12 @@ public class LabyJeu implements Jeu {
         laby = new Labyrinthe("labySimple/laby1.txt");
     }
 
+    /**
+     * Méthode update de LabyJeu qui permet de mettre à jour le jeu
+     *
+     * @param secondes secondes
+     * @param clavier  clavier
+     */
     @Override
     public void update(double secondes, Clavier clavier) {
         if (clavier.haut)
@@ -38,6 +44,7 @@ public class LabyJeu implements Jeu {
         if (this.etreFini()) {
             System.out.println("Vous avez gagné !");
             System.exit(0);
+            // Vérifier si le joueur a perdu
         } else if (this.etrePerdu()) {
             System.out.println("Vous avez perdu !");
             System.exit(0);
@@ -51,11 +58,21 @@ public class LabyJeu implements Jeu {
         // TODO
     }
 
+    /**
+     * Méthode etreFini de LabyJeu qui permet de savoir si le jeu est fini
+     *
+     * @return true si le jeu est fini, false sinon
+     */
     @Override
     public boolean etreFini() {
         return this.laby.etreFini();
     }
 
+    /**
+     * Méthode etrePerdu de LabyJeu qui permet de savoir si le jeu est perdu
+     *
+     * @return true si le jeu est perdu, false sinon
+     */
     public boolean etrePerdu() {
         return this.laby.etrePerdu();
     }

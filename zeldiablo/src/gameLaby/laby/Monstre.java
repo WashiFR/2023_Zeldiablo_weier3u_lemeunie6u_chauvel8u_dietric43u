@@ -7,7 +7,7 @@ public class Monstre {
     /**
      * position du monstre
      */
-    int x,y;
+    int x, y;
 
     /**
      * constructeur
@@ -36,7 +36,10 @@ public class Monstre {
     // GETTER
     // ############################################
 
+
     /**
+     * Getter de la position du monstre selon x
+     *
      * @return position x du monstre
      */
     public int getX() {
@@ -44,14 +47,19 @@ public class Monstre {
     }
 
     /**
+     * Getter de la position du monstre selon y
+     *
      * @return position y du monstre
      */
     public int getY() {
         return this.y;
     }
 
+
     /**
-     * permet d'attaquer un personnage et de lui enlever 1 point de vie
+     * permet de faire attaquer le monstre
+     *
+     * @param p personnage a attaquer
      */
     public void attaquer(Perso p) {
         p.setPV(-1);

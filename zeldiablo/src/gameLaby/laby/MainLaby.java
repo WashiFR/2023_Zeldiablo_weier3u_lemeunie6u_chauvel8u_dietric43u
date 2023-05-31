@@ -8,7 +8,7 @@ import java.io.IOException;
  * classe qui lance le jeu du labyrinthe
  */
 public class MainLaby {
-    
+
     public static void main(String[] args) throws IOException {
         int width = 800;
         int height = 600;
@@ -20,7 +20,7 @@ public class MainLaby {
         LabyImage labyImage = new LabyImage();
 
         // parametrage du moteur de jeu
-        MoteurJeu.setTaille(width,height);
+        MoteurJeu.setTaille(width, height);
         MoteurJeu.setFPS(pFPS);
 
         // lancement du jeu
