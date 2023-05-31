@@ -54,6 +54,6 @@ public class Monstre {
      * permet d'attaquer un personnage et de lui enlever 1 point de vie
      */
     public void attaquer(Perso p) {
-        p.pv = p.pv-1;
+        p.setPV(-1);
     }
 }

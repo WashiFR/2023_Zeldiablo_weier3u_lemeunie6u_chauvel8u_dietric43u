@@ -1,10 +1,11 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import gameLaby.laby.Labyrinthe;
+import gameLaby.laby.Monstre;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class monstreTest {
 
@@ -64,5 +65,14 @@ public class monstreTest {
     public void test_05_deplacerMonstre() {
         laby.deplacerMonstre();
         assertEquals(true, laby.getMonstre(3, 2) || laby.getMonstre(5, 2) || laby.getMonstre(4, 1) || laby.getMonstre(4, 3));
+    }
+
+    /**
+     * Test de la méthode attaquer qui vérifie que le personnage a bien perdu un point de vie
+     */
+    @Test
+    public void test_06_attaquer() {
+        laby.monstre.attaquer(laby.pj);
+        assertEquals(laby.pj.getPV(), 4, "Le personnage aurait du perdre un PV.");
     }
 }

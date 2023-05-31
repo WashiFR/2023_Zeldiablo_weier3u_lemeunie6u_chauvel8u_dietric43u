@@ -60,4 +60,22 @@ public class Perso {
         return this.y;
     }
 
+    /**
+     * @return le nombre de point de vie du personnage
+     */
+    public int getPV() {
+        return this.pv;
+    }
+
+    // ############################################
+    // SETTER
+    // ############################################
+
+    /**
+     * permet de changer le nombre de points de vie du personnage
+     * (utile pour ne pas appeler directement l'attribut pv)
+     */
+    public void setPV(int ajout) {
+        this.pv = this.pv + ajout;
+    }
 }
