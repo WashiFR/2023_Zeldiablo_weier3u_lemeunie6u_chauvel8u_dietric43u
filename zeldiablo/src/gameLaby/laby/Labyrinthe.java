@@ -50,6 +50,10 @@ public class Labyrinthe {
      * l'amulette du labyrinthe
      */
     public Amulette amulette;
+    /**
+     * indique si l'amulette a été trouvée
+     */
+    boolean amuletteTrouvee = false;
 
     /**
      * case de départ
@@ -180,8 +184,9 @@ public class Labyrinthe {
             this.pj.x = suivante[0];
             this.pj.y = suivante[1];
         }
-        if (amulette.etrePresent(this.pj.x, this.pj.y) && !amulette.etreRamasse()) {
-            this.amulette.ramasser();
+        if (!amuletteTrouvee && amulette.etrePresent(this.pj.x, this.pj.y)) {
+            amuletteTrouvee = true;
+            this.amulette = null;
         }
 
 
@@ -198,7 +203,7 @@ public class Labyrinthe {
      * @return fin du jeu
      */
     public boolean etreFini() {
-        return (this.pj.getPV() <= 0 || (this.amulette.etreRamasse() && this.pj.x == this.depart[0] && this.pj.y == this.depart[1]));
+        return (this.pj.getPV() <= 0 || (amuletteTrouvee && this.pj.x == this.depart[0] && this.pj.y == this.depart[1]));
     }
 
     // ##################################

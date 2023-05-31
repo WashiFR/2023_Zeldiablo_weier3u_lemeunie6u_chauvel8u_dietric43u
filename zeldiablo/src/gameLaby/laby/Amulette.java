@@ -4,7 +4,6 @@ public class Amulette {
 
     int x, y;
 
-    boolean ramasse = false;
 
     /**
      * constructeur
@@ -34,15 +33,6 @@ public class Amulette {
 
     public int getY() {
         return this.y;
-    }
-
-
-    public void ramasser() {
-        this.ramasse = true;
-    }
-
-    public boolean etreRamasse() {
-        return this.ramasse;
     }
 
 }

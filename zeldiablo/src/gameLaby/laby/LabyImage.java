@@ -51,10 +51,12 @@ public class LabyImage implements DessinJeu {
         }
 
         // Affichage amulette
-        Image amulette = new Image(AMULETTE, TAILLE_CASE / 2, TAILLE_CASE / 2, false, false);
-        double ax = laby.amulette.getX();
-        double ay = laby.amulette.getY();
-        gc.drawImage(amulette, ax * TAILLE_CASE + TAILLE_CASE / 4, ay * TAILLE_CASE + TAILLE_CASE / 4);
+        if (laby.amulette != null) {
+            Image amulette = new Image(AMULETTE, TAILLE_CASE / 2, TAILLE_CASE / 2, false, false);
+            double ax = laby.amulette.getX();
+            double ay = laby.amulette.getY();
+            gc.drawImage(amulette, ax * TAILLE_CASE + TAILLE_CASE / 4, ay * TAILLE_CASE + TAILLE_CASE / 4);
+        }
         // Affiche l'image du joueur
         Image joueur = new Image(PJ, TAILLE_CASE, TAILLE_CASE, false, false);
         double px = laby.pj.getX();
