@@ -28,6 +28,14 @@ public class Amulette {
         return (this.x == dx && this.y == dy);
     }
 
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
+    }
+
 
     public void ramasser() {
         this.ramasse = true;
