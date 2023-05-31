@@ -7,13 +7,22 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test de la classe Monstre
+ */
 public class monstreTest {
 
+    /**
+     * Attribut Labyrinthe
+     */
     public Labyrinthe laby;
 
+    /**
+     * Méthode setUp qui initialise le labyrinthe
+     */
     @BeforeEach
     public void setUp() throws IOException {
-         laby = new Labyrinthe("labySimple/laby1.txt");
+        laby = new Labyrinthe("labySimple/laby1.txt");
     }
 
     /**

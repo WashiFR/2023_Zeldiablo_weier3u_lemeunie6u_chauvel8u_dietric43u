@@ -6,13 +6,22 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Test de la classe Amulette
+ */
 public class AmuletteTest {
 
+    /**
+     * Attribut Labyrinthe
+     */
     private Labyrinthe laby;
 
+    /**
+     * Méthode setUp qui initialise le labyrinthe
+     */
     @BeforeEach
     public void setUp() throws IOException {
-         laby = new Labyrinthe("labySimple/laby1.txt");
+        laby = new Labyrinthe("labySimple/laby1.txt");
     }
 
     /**

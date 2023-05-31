@@ -33,16 +33,15 @@ public class LabyImage implements DessinJeu {
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
         Labyrinthe laby = labyJeu.getLaby();
-        for (int i = 0; i<laby.getLength(); i++) {
-            for (int j = 0; j<laby.getLengthY(); j++) {
+        for (int i = 0; i < laby.getLength(); i++) {
+            for (int j = 0; j < laby.getLengthY(); j++) {
                 Image sol = new Image(SOL, TAILLE_CASE, TAILLE_CASE, false, false);
                 gc.drawImage(sol, i * TAILLE_CASE, j * TAILLE_CASE);
-                if (laby.getMur(i,j)) {
+                if (laby.getMur(i, j)) {
                     // Affiche l'image du mur
                     Image mur = new Image(MUR, TAILLE_CASE, TAILLE_CASE, false, false);
                     gc.drawImage(mur, i * TAILLE_CASE, j * TAILLE_CASE);
-                }
-                else if (laby.getMonstre(i, j)) {
+                } else if (laby.getMonstre(i, j)) {
                     // Affiche l'image du monstre
                     Image monstre = new Image(MONSTRE, TAILLE_CASE, TAILLE_CASE, false, false);
                     gc.drawImage(monstre, i * TAILLE_CASE, j * TAILLE_CASE);
