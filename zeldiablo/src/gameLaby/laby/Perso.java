@@ -12,6 +12,11 @@ public class Perso {
     int x, y;
 
     /**
+     * points de vie du personnage
+     */
+    public int pv;
+
+    /**
      * constructeur
      *
      * @param dx position selon x
@@ -20,6 +25,7 @@ public class Perso {
     public Perso(int dx, int dy) {
         this.x = dx;
         this.y = dy;
+        this.pv = 5;
     }
 
     /**
@@ -53,4 +59,5 @@ public class Perso {
         //getter
         return this.y;
     }
+
 }
