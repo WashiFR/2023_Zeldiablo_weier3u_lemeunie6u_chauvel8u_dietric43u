@@ -43,8 +43,7 @@ public class LabyJeu implements Jeu {
 
     @Override
     public boolean etreFini() {
-        boolean fin = this.laby.pj.getPV() != 0;
-        return fin;
+        return this.laby.etreFini();
     }
 
     /**

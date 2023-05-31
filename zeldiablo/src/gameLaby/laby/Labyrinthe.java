@@ -21,6 +21,8 @@ public class Labyrinthe {
     // Constante ajoutée
     public static final char MONSTRE = 'M';
 
+    public static final char AMULETTE = 'A';
+
     /**
      * constantes actions possibles
      */
@@ -43,6 +45,16 @@ public class Labyrinthe {
      * le monstre du labyrinthe
      */
     public Monstre monstre;
+
+    /**
+     * l'amulette du labyrinthe
+     */
+    public Amulette amulette;
+
+    /**
+     * case de départ
+     */
+    public int[] depart;
 
     /**
      * retourne la case suivante selon une actions
@@ -124,9 +136,14 @@ public class Labyrinthe {
                         this.murs[colonne][numeroLigne] = false;
                         // ajoute PJ
                         this.pj = new Perso(colonne, numeroLigne);
+                        // case de depart
+                        this.depart = new int[]{colonne, numeroLigne};
                         break;
                     case MONSTRE:
                         this.monstre = new Monstre(colonne, numeroLigne);
+                        break;
+                    case AMULETTE:
+                        this.amulette = new Amulette(colonne, numeroLigne);
                         break;
 
                     default:
@@ -163,6 +180,10 @@ public class Labyrinthe {
             this.pj.x = suivante[0];
             this.pj.y = suivante[1];
         }
+        if (amulette.etrePresent(this.pj.x, this.pj.y) && !amulette.etreRamasse()) {
+            this.amulette.ramasser();
+        }
+
 
         // deplace le monstre avec une proba de 30%
         double rand = Math.random();
@@ -172,13 +193,12 @@ public class Labyrinthe {
 
 
     /**
-     * jamais fini
+     * Le jeu est fini si le personnage n'a plus de pv ou s'il a ramassé l'amulette et qu'il est revenu a la case de départ
      *
      * @return fin du jeu
      */
     public boolean etreFini() {
-        boolean fin = pj.pv != 0;
-        return fin;
+        return (this.pj.getPV() <= 0 || (this.amulette.etreRamasse() && this.pj.x == this.depart[0] && this.pj.y == this.depart[1]));
     }
 
     // ##################################
