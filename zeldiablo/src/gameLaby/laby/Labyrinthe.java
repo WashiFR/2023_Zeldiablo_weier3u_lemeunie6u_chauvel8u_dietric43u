@@ -203,7 +203,11 @@ public class Labyrinthe {
      * @return fin du jeu
      */
     public boolean etreFini() {
-        return (this.pj.getPV() <= 0 || (amuletteTrouvee && this.pj.x == this.depart[0] && this.pj.y == this.depart[1]));
+        return amuletteTrouvee && this.pj.x == this.depart[0] && this.pj.y == this.depart[1];
+    }
+
+    public boolean etrePerdu() {
+        return this.pj.getPV() <= 0;
     }
 
     // ##################################
@@ -224,10 +228,13 @@ public class Labyrinthe {
      *
      * @return
      */
-    public int getLength() {return murs.length;}
+    public int getLength() {
+        return murs.length;
+    }
 
     /**
      * return mur en (i,j)
+     *
      * @param x
      * @param y
      * @return
@@ -246,10 +253,10 @@ public class Labyrinthe {
         int[] courante = {this.monstre.x, this.monstre.y};
 
         // choix aléatoire de l'action
-        int choix = (int)(Math.random() * 4);
+        int choix = (int) (Math.random() * 4);
         String action = "";
 
-        switch (choix){
+        switch (choix) {
             case 0:
                 action = HAUT;
                 break;
@@ -276,7 +283,6 @@ public class Labyrinthe {
     }
 
     /**
-     *
      * @param x
      * @param y
      * @return

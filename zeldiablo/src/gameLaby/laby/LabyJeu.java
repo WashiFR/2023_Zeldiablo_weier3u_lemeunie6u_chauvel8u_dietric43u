@@ -34,6 +34,16 @@ public class LabyJeu implements Jeu {
             this.laby.deplacerPerso(Labyrinthe.DROITE);
 
         // TODO : update secondes
+        // Vérifier si le joueur a gagné
+        if (this.etreFini()) {
+            System.out.println("Vous avez gagné !");
+            System.exit(0);
+        } else if (this.etrePerdu()) {
+            System.out.println("Vous avez perdu !");
+            System.exit(0);
+        }
+
+
     }
 
     @Override
@@ -46,8 +56,13 @@ public class LabyJeu implements Jeu {
         return this.laby.etreFini();
     }
 
+    public boolean etrePerdu() {
+        return this.laby.etrePerdu();
+    }
+
     /**
      * Retourne le labyrinthe
+     *
      * @return labyrinthe
      */
     public Labyrinthe getLaby() {
