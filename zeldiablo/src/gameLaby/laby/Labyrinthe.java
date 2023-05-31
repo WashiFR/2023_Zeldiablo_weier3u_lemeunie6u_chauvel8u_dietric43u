@@ -177,7 +177,8 @@ public class Labyrinthe {
      * @return fin du jeu
      */
     public boolean etreFini() {
-        return false;
+        boolean fin = pj.pv != 0;
+        return fin;
     }
 
     // ##################################

@@ -49,4 +49,11 @@ public class Monstre {
     public int getY() {
         return this.y;
     }
+
+    /**
+     * permet d'attaquer un personnage et de lui enlever 1 point de vie
+     */
+    public void attaquer(Perso p) {
+        p.pv = p.pv-1;
+    }
 }
