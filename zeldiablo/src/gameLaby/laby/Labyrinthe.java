@@ -194,6 +194,13 @@ public class Labyrinthe {
         double rand = Math.random();
         if (rand <= 0.3)
             deplacerMonstre();
+
+        if (((this.pj.getX() == this.monstre.getX()-1) && (this.pj.getY() == this.monstre.getY())) ||
+                ((this.pj.getX() == this.monstre.getX()+1) && (this.pj.getY() == this.monstre.getY())) ||
+                ((this.pj.getY() == this.monstre.getY()-1) && (this.pj.getX() == this.monstre.getX()))||
+                ((this.pj.getY() == this.monstre.getY()+1) && (this.pj.getX() == this.monstre.getX()))) {
+            this.monstre.attaquer(this.pj);
+        }
     }
 
 
