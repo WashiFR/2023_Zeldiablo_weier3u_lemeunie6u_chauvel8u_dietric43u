@@ -75,4 +75,17 @@ public class monstreTest {
         laby.monstre.attaquer(laby.pj);
         assertEquals(laby.pj.getPV(), 4, "Le personnage aurait du perdre un PV.");
     }
+
+    /**
+     * Test de la méthode etrePerdu qui vérifie que le personnage a bien perdu
+     */
+    @Test
+    public void test_07_etrePerdu() {
+        laby.monstre.attaquer(laby.pj);
+        laby.monstre.attaquer(laby.pj);
+        laby.monstre.attaquer(laby.pj);
+        laby.monstre.attaquer(laby.pj);
+        laby.monstre.attaquer(laby.pj);
+        assertEquals(true, laby.etrePerdu(), "Le personnage aurait du perdre.");
+    }
 }
