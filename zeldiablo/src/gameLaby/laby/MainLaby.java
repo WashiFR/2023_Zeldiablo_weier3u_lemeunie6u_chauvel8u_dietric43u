@@ -16,13 +16,15 @@ public class MainLaby {
 
         // creation des objets
         LabyJeu jeuLaby = new LabyJeu();
-        LabyDessin dessinLaby = new LabyDessin();
+//        LabyDessin dessinLaby = new LabyDessin();
+        LabyImage labyImage = new LabyImage();
 
         // parametrage du moteur de jeu
         MoteurJeu.setTaille(width, height);
         MoteurJeu.setFPS(pFPS);
 
         // lancement du jeu
-        MoteurJeu.launch(jeuLaby, dessinLaby);
+//        MoteurJeu.launch(jeuLaby, dessinLaby);
+        MoteurJeu.launch(jeuLaby, labyImage);
     }
 }
