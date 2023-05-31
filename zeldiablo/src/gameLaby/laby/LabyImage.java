@@ -12,19 +12,17 @@ import javafx.scene.image.Image;
  */
 public class LabyImage implements DessinJeu {
 
-    public static final String URL = "C:\\Users\\loris\\OneDrive\\Documents\\GitHub\\2023_Zeldiablo_weier3u_lemeunie6u_chauvel8u_dietric43u\\zeldiablo\\";
+    public static final String MUR = "file:./src/gameLaby/laby/img/wall.png";
 
-    public static final String MUR = URL + "img\\wall.png";
+    public static final String PJ = "file:./src/gameLaby/laby/img/player.png";
 
-    public static final String PJ = URL + "img\\player.png";
+    public static final String MONSTRE = "file:./src/gameLaby/laby/img/monster.png";
 
-    public static final String MONSTRE = URL + "img\\monster.png";
-
-    public static final String SOL = URL + "img\\floor.png";
+    public static final String SOL = "file:./src/gameLaby/laby/img/floor.png";
 
     private static final int TAILLE_CASE = 50;
 
-    public void dessinerJeu(Jeu jeu, Canvas canvas){
+    public void dessinerJeu(Jeu jeu, Canvas canvas) {
         LabyJeu labyJeu = (LabyJeu) jeu;
 
         final GraphicsContext gc = canvas.getGraphicsContext2D();
