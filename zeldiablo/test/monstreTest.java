@@ -47,7 +47,7 @@ public class monstreTest {
      */
     @Test
     public void test_02_Placement_etre_present_faux() {
-        assertEquals(false, laby.monstre.etrePresent(6, 4));
+        assertEquals(false, laby.etreMonstre(6, 4));
     }
 
     /**
@@ -55,7 +55,7 @@ public class monstreTest {
      */
     @Test
     public void test_03_Placement_getMonstre() {
-        assertEquals(true, laby.getMonstre(4, 2));
+        assertEquals(true, laby.etreMonstre(4, 2));
     }
 
     /**
@@ -64,7 +64,7 @@ public class monstreTest {
     @Test
     public void test_04_deplacerMonstre() {
         laby.deplacerMonstre();
-        assertEquals(false, laby.getMonstre(4, 2));
+        assertEquals(false, laby.etreMonstre(4, 2));
     }
 
     /**
@@ -73,7 +73,7 @@ public class monstreTest {
     @Test
     public void test_05_deplacerMonstre() {
         laby.deplacerMonstre();
-        assertEquals(true, laby.getMonstre(3, 2) || laby.getMonstre(5, 2) || laby.getMonstre(4, 1) || laby.getMonstre(4, 3));
+        assertEquals(true, laby.etreMonstre(3, 2) || laby.etreMonstre(5, 2) || laby.etreMonstre(4, 1) || laby.etreMonstre(4, 3));
     }
 
     /**
@@ -81,8 +81,8 @@ public class monstreTest {
      */
     @Test
     public void test_06_attaquer() {
-        laby.monstre.attaquer(laby.pj);
-        assertEquals(laby.pj.getPV(), 4, "Le personnage aurait du perdre un PV.");
+        laby.monstre.attaquer(laby.getPJ());
+        assertEquals(laby.getPJ().getPV(), 4, "Le personnage aurait du perdre un PV.");
     }
 
     /**
@@ -90,11 +90,11 @@ public class monstreTest {
      */
     @Test
     public void test_07_etrePerdu() {
-        laby.monstre.attaquer(laby.pj);
-        laby.monstre.attaquer(laby.pj);
-        laby.monstre.attaquer(laby.pj);
-        laby.monstre.attaquer(laby.pj);
-        laby.monstre.attaquer(laby.pj);
+        laby.monstre.attaquer(laby.getPJ());
+        laby.monstre.attaquer(laby.getPJ());
+        laby.monstre.attaquer(laby.getPJ());
+        laby.monstre.attaquer(laby.getPJ());
+        laby.monstre.attaquer(laby.getPJ());
         assertEquals(true, laby.etrePerdu(), "Le personnage aurait du perdre.");
     }
 }

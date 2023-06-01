@@ -4,28 +4,22 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
 /**
- * classe labyrinthe. represente un labyrinthe avec
+ * classe labyrinthe represente un labyrinthe avec
  * <ul> des murs </ul>
  * <ul> un personnage (x,y) </ul>
  */
 public class Labyrinthe {
-
     /**
      * Constantes char
      */
     public static final char MUR = 'X';
     public static final char PJ = 'P';
     public static final char VIDE = '.';
-
     // Constante ajoutée
     public static final char MONSTRE = 'M';
-
     public static final char FANTOME = 'F';
-
     public static final char AMULETTE = 'A';
-
     /**
      * constantes actions possibles
      */
@@ -33,44 +27,36 @@ public class Labyrinthe {
     public static final String BAS = "Bas";
     public static final String GAUCHE = "Gauche";
     public static final String DROITE = "Droite";
-
     /**
      * attribut du personnage
      */
-    public Perso pj;
-
+    private Perso pj;
     /**
      * les murs du labyrinthe
      */
-    public boolean[][] murs;
-
+    private boolean[][] murs;
     /**
      * les monstres du labyrinthe
      */
-    public ArrayList<Monstre> monstres;
-
+    private ArrayList<Monstre> monstres;
     /**
      * les fantomes du labyrinthe
      */
-    public ArrayList<Fantome> fantomes;
-
+    private ArrayList<Fantome> fantomes;
     /**
      * l'amulette du labyrinthe
      */
-    public Amulette amulette;
+    private Amulette amulette;
     /**
      * indique si l'amulette a été trouvée
      */
-    boolean amuletteTrouvee = false;
-
+    private boolean amuletteTrouvee = false;
     /**
      * case de départ
      */
-    public int[] depart;
-
+    private int[] depart;
     /**
      * retourne la case suivante selon une actions
-     *
      * @param x      case depart
      * @param y      case depart
      * @param action action effectuee
@@ -100,10 +86,8 @@ public class Labyrinthe {
         int[] res = {x, y};
         return res;
     }
-
     /**
      * charge le labyrinthe
-     *
      * @param nom nom du fichier de labyrinthe
      * @return labyrinthe cree
      * @throws IOException probleme a la lecture / ouverture
@@ -165,78 +149,22 @@ public class Labyrinthe {
                         throw new Error("caractere inconnu " + c);
                 }
             }
-
             // lecture
             ligne = bfRead.readLine();
             numeroLigne++;
         }
-
         // ferme fichier
         bfRead.close();
     }
-
-
-    /**
-     * deplace le personnage en fonction de l'action.
-     * gere la collision avec les murs
-     *
-     * @param action une des actions possibles
-     */
-    public void deplacerPerso(String action) {
-        // case courante
-        int[] courante = {this.pj.x, this.pj.y};
-
-        // calcule case suivante
-        int[] suivante = getSuivant(courante[0], courante[1], action);
-
-        // si c'est pas un mur ou un monstre, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]] && !getMonstre(suivante[0], suivante[1])&& !getFantome(suivante[0], suivante[1])) {
-            // on met a jour personnage
-            this.pj.x = suivante[0];
-            this.pj.y = suivante[1];
-        }
-        if (!amuletteTrouvee && amulette.etrePresent(this.pj.x, this.pj.y)) {
-            amuletteTrouvee = true;
-            this.amulette = null;
-        }
-
-
-
-
-        // attaque des monstres si le personnage est a cote
-        for (Monstre m : monstres) {
-            if (((this.pj.getX() == m.getX() - 1) && (this.pj.getY() == m.getY())) ||
-                    ((this.pj.getX() == m.getX() + 1) && (this.pj.getY() == m.getY())) ||
-                    ((this.pj.getY() == m.getY() - 1) && (this.pj.getX() == m.getX())) ||
-                    ((this.pj.getY() == m.getY() + 1) && (this.pj.getX() == m.getX()))) {
-                m.attaquer(this.pj);
-            }
-        }
-
-        // attaque des fantomes si le personnage est a cote
-        for (Fantome f : fantomes) {
-            if (((this.pj.getX() == f.getX() - 1) && (this.pj.getY() == f.getY())) ||
-                    ((this.pj.getX() == f.getX() + 1) && (this.pj.getY() == f.getY())) ||
-                    ((this.pj.getY() == f.getY() - 1) && (this.pj.getX() == f.getX())) ||
-                    ((this.pj.getY() == f.getY() + 1) && (this.pj.getX() == f.getX()))) {
-                f.attaquer(this.pj);
-            }
-        }
-    }
-
-
     /**
      * Le jeu est fini si le personnage n'a plus de pv ou s'il a ramassé l'amulette et qu'il est revenu a la case de départ
-     *
      * @return fin du jeu
      */
     public boolean etreFini() {
-        return amuletteTrouvee && this.pj.x == this.depart[0] && this.pj.y == this.depart[1];
+        return amuletteTrouvee && this.pj.getX() == this.depart[0] && this.pj.getY() == this.depart[1];
     }
-
     /**
      * Le jeu est perdu si le personnage n'a plus de pv
-     *
      * @return jeu perdu
      */
     public boolean etrePerdu() {
@@ -246,28 +174,22 @@ public class Labyrinthe {
     // ##################################
     // GETTER
     // ##################################
-
     /**
      * return taille selon Y
-     *
      * @return
      */
     public int getLengthY() {
         return murs[0].length;
     }
-
     /**
      * return taille selon X
-     *
      * @return
      */
     public int getLength() {
         return murs.length;
     }
-
     /**
      * return mur en (i,j)
-     *
      * @param x
      * @param y
      * @return
@@ -276,45 +198,41 @@ public class Labyrinthe {
         // utilise le tableau de boolean
         return this.murs[x][y];
     }
-
     /**
-     * deplace le monstre aléatoirement
-     * gere la collision avec les murs et avec le personnage
+     * return la liste des monstres
+     * @return liste des monstres
      */
-    public void deplacerMonstre(Monstre m) {
-        // case courante
-        int[] courante = {m.x, m.y};
-
-        // choix aléatoire de l'action
-        int choix = (int) (Math.random() * 4);
-        String action = "";
-
-        switch (choix) {
-            case 0:
-                action = HAUT;
-                break;
-            case 1:
-                action = BAS;
-                break;
-            case 2:
-                action = DROITE;
-                break;
-            case 3:
-                action = GAUCHE;
-                break;
-        }
-
-        // calcule case suivante
-        int[] suivante = getSuivant(courante[0], courante[1], action);
-
-        // si c'est pas un mur ou le joueur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]] && !this.pj.etrePresent(suivante[0], suivante[1])&& !getFantome(suivante[0], suivante[1])) {
-            // on met a jour le monstre
-            m.x = suivante[0];
-            m.y = suivante[1];
-        }
+    public ArrayList<Monstre> getMonstre() {
+        return monstres;
     }
-
+    /**
+     * return la liste des fantomes
+     * @return liste des fantomes
+     */
+    public ArrayList<Fantome> getFantome() {
+        return fantomes;
+    }
+    /**
+     * return le personnage
+     * @return personnage
+     */
+    public Perso getPJ() {
+        return pj;
+    }
+    /**
+     * return l'amulette
+     * @return amulette
+     */
+    public Amulette getAmulette() {
+        return amulette;
+    }
+    /**
+     * return la case de depart
+     * @return case de depart
+     */
+    public int[] getDepart() {
+        return depart;
+    }
 
     /**
      * return true si le monstre est en (x,y)
@@ -323,7 +241,7 @@ public class Labyrinthe {
      * @param y coordonnee y
      * @return monstre en (x,y)
      */
-    public boolean getMonstre(int x, int y) {
+    public boolean etreMonstre(int x, int y) {
         boolean present = false;
         for (Monstre m : monstres) {
             if (m.etrePresent(x, y))
@@ -332,7 +250,9 @@ public class Labyrinthe {
         return present;
     }
 
-    public boolean getFantome(int x, int y) {
+
+
+    public boolean etreFantome(int x, int y) {
         boolean present = false;
         for (Fantome f : fantomes) {
             if (f.etrePresent(x, y))
@@ -341,11 +261,65 @@ public class Labyrinthe {
         return present;
     }
 
-    public void deplacerFantome(Fantome f) {
-        // case courante
-        int[] courante = {f.x, f.y};
 
-        // choix aléatoire de l'action
+
+
+    public void deplacer(Entite e, String action) {
+        // case courante
+        int[] courante = {e.getX(), e.getY()};
+
+        if (action.equals("aleatoire")) {
+            action = actionAleatoire();
+        }
+
+        int[] suivante = getSuivant(courante[0], courante[1], action);
+
+        if (e instanceof Monstre) {
+            // si c'est pas un mur ou le joueur, on effectue le deplacement
+            if (!this.murs[suivante[0]][suivante[1]] && !this.pj.etrePresent(suivante[0], suivante[1]) && !etreFantome(suivante[0], suivante[1])) {
+                // on met a jour le monstre
+                e.seDeplacer(suivante[0], suivante[1]);
+            }
+        } else if (e instanceof Fantome) {
+            // si c'est pas un monstre ou le joueur, on effectue le deplacement
+            if (!this.pj.etrePresent(suivante[0], suivante[1]) && !etreMonstre(suivante[0], suivante[1]) && suivante[0] >= 0 && suivante[1] >= 0 && suivante[0] < getLength() && suivante[1] < getLengthY()) {
+                // on met a jour le monstre
+                e.seDeplacer(suivante[0], suivante[1]);
+            }
+        } else if (e instanceof Perso) {
+            // si c'est pas un mur ou un monstre, on effectue le deplacement
+            if (!this.murs[suivante[0]][suivante[1]] && !etreMonstre(suivante[0], suivante[1]) && !etreFantome(suivante[0], suivante[1])) {
+                // on met a jour personnage
+                this.pj.seDeplacer(suivante[0], suivante[1]);
+            }
+            if (!amuletteTrouvee && amulette.etrePresent(this.pj.getX(), this.pj.getY())) {
+                amuletteTrouvee = true;
+                this.amulette = null;
+            }
+
+
+            // attaque du monstre si un personnage est a cote
+            if (etreMonstre(this.pj.getX(), this.pj.getY() - 1) ||
+                    etreMonstre(this.pj.getX(), this.pj.getY() + 1) ||
+                    etreMonstre(this.pj.getX() - 1, this.pj.getY()) ||
+                    etreMonstre(this.pj.getX() + 1, this.pj.getY())) {
+                this.monstres.get(0).attaquer(this.pj);
+                System.out.println("Monstre attaque");
+            }
+            // attaque du fantome si un personnage est a cote
+            if (etreFantome(this.pj.getX(), this.pj.getY() - 1) ||
+                    etreFantome(this.pj.getX(), this.pj.getY() + 1) ||
+                    etreFantome(this.pj.getX() - 1, this.pj.getY()) ||
+                    etreFantome(this.pj.getX() + 1, this.pj.getY())) {
+                this.fantomes.get(0).attaquer(this.pj);
+                System.out.println("Fantome attaque");
+
+            }
+        }
+    }
+
+
+    public String actionAleatoire() {
         int choix = (int) (Math.random() * 4);
         String action = "";
 
@@ -363,16 +337,8 @@ public class Labyrinthe {
                 action = GAUCHE;
                 break;
         }
-
-        // calcule case suivante
-        int[] suivante = getSuivant(courante[0], courante[1], action);
-
-        // si c'est pas un monstre ou le joueur, on effectue le deplacement
-        if (!this.pj.etrePresent(suivante[0], suivante[1]) && !getMonstre(suivante[0], suivante[1])&&suivante[0]>=0&&suivante[1]>=0&&suivante[0]<getLength()&&suivante[1]<getLengthY()) {
-            // on met a jour le monstre
-            f.x = suivante[0];
-            f.y = suivante[1];
-        }
+        return action;
     }
+
 }
 

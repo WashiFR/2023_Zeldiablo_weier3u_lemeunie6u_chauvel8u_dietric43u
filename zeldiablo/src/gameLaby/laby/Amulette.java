@@ -8,7 +8,7 @@ public class Amulette {
     /**
      * position de l'amulette
      */
-    int x, y;
+    private int x, y;
 
 
     /**

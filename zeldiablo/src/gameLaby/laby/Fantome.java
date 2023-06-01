@@ -1,7 +1,7 @@
 package gameLaby.laby;
 
 public class Fantome implements  Entite{
-    int x,y;
+    private int x,y;
 
     public Fantome(int dx, int dy) {
         this.x = dx;
@@ -10,6 +10,12 @@ public class Fantome implements  Entite{
     @Override
     public boolean etrePresent(int dx, int dy) {
         return (this.x == dx && this.y == dy);
+    }
+
+    @Override
+    public void seDeplacer(int dx, int dy) {
+        this.x = dx;
+        this.y = dy;
     }
 
     @Override

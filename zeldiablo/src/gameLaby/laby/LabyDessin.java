@@ -40,7 +40,7 @@ public class LabyDessin implements DessinJeu {
                 if (laby.getMur(i, j)) {
                     gc.setFill(Color.BLACK);
                     gc.fillRect(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
-                } else if (laby.getMonstre(i, j)) {
+                } else if (laby.etreMonstre(i, j)) {
                     gc.setFill(Color.PURPLE);
                     gc.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                 }
@@ -49,15 +49,15 @@ public class LabyDessin implements DessinJeu {
 
         //dessin joueur
         gc.setFill(Color.RED);
-        double px = laby.pj.getX();
-        double py = laby.pj.getY();
+        double px = laby.getPJ().getX();
+        double py = laby.getPJ().getY();
         gc.fillOval(px * TAILLE_CASE, py * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
 
         //dessin Amulette
-        if (laby.amulette != null) {
+        if (laby.getAmulette() != null) {
             gc.setFill(Color.YELLOW);
-            double ax = laby.amulette.getX();
-            double ay = laby.amulette.getY();
+            double ax = laby.getAmulette().getX();
+            double ay = laby.getAmulette().getY();
             gc.fillOval(ax * TAILLE_CASE, ay * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
         }
     }

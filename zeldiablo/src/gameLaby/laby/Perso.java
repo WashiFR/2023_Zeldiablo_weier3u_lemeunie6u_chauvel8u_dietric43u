@@ -8,12 +8,12 @@ public class Perso implements Entite{
     /**
      * position du personnage
      */
-    int x, y;
+    private int x, y;
 
     /**
      * points de vie du personnage
      */
-    public int pv;
+    private int pv;
 
     /**
      * constructeur
@@ -85,5 +85,11 @@ public class Perso implements Entite{
      */
     public void setPV(int ajout) {
         this.pv = this.pv + ajout;
+    }
+
+
+    public void seDeplacer(int dx, int dy) {
+        this.x = dx;
+        this.y = dy;
     }
 }

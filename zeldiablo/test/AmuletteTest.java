@@ -29,8 +29,8 @@ public class AmuletteTest {
      */
     @Test
     public void test_00_Placement_Amulette_Getter() {
-        assertEquals(2, laby.amulette.getX());
-        assertEquals(1, laby.amulette.getY());
+        assertEquals(2, laby.getAmulette().getX());
+        assertEquals(1, laby.getAmulette().getY());
     }
 
     /**
@@ -38,7 +38,7 @@ public class AmuletteTest {
      */
     @Test
     public void test_01_Placement_etre_present() {
-        assertEquals(true, laby.amulette.etrePresent(2, 1));
+        assertEquals(true, laby.getAmulette().etrePresent(2, 1));
     }
 
     /**
@@ -46,7 +46,7 @@ public class AmuletteTest {
      */
     @Test
     public void test_02_Placement_etre_present_faux() {
-        assertEquals(false, laby.amulette.etrePresent(6, 4));
+        assertEquals(false, laby.getAmulette().etrePresent(6, 4));
     }
 
     /**

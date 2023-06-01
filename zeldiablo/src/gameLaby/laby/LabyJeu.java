@@ -31,26 +31,26 @@ public class LabyJeu implements Jeu {
     @Override
     public void update(double secondes, Clavier clavier) {
         if (clavier.haut)
-            this.laby.deplacerPerso(Labyrinthe.HAUT);
+            this.laby.deplacer(laby.getPJ(), Labyrinthe.HAUT);
         if (clavier.bas)
-            this.laby.deplacerPerso(Labyrinthe.BAS);
+            this.laby.deplacer(laby.getPJ(), Labyrinthe.BAS);
         if (clavier.gauche)
-            this.laby.deplacerPerso(Labyrinthe.GAUCHE);
+            this.laby.deplacer(laby.getPJ(), Labyrinthe.GAUCHE);
         if (clavier.droite)
-            this.laby.deplacerPerso(Labyrinthe.DROITE);
+            this.laby.deplacer(laby.getPJ(), Labyrinthe.DROITE);
 
         // deplace les monstres avec une proba de 5%
-        for (Monstre m : laby.monstres) {
+        for (Monstre m : laby.getMonstre()) {
             double randMonstre = Math.random();
             if (randMonstre <= 0.05)
-                this.laby.deplacerMonstre(m);
+                this.laby.deplacer(m, "aleatoire");
         }
 
         // deplace les fantomes avec une proba de 5%
-        for (Fantome f : laby.fantomes) {
+        for (Fantome f : laby.getFantome()) {
             double randFantome = Math.random();
             if (randFantome <= 0.05)
-                this.laby.deplacerFantome(f);
+                this.laby.deplacer(f, "aleatoire");
         }
 
         // Vérifier si le joueur a gagné

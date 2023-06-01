@@ -7,7 +7,7 @@ public class Monstre implements Entite {
     /**
      * position du monstre
      */
-    int x, y;
+    private int x, y;
 
     /**
      * constructeur
@@ -55,6 +55,13 @@ public class Monstre implements Entite {
         return this.y;
     }
 
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 
     /**
      * permet de faire attaquer le monstre
@@ -63,5 +70,16 @@ public class Monstre implements Entite {
      */
     public void attaquer(Perso p) {
         p.setPV(-1);
+    }
+
+    /**
+     * permet de faire se deplacer le monstre
+     *
+     * @param dx deplacement selon x
+     * @param dy deplacement selon y
+     */
+    public void seDeplacer(int dx, int dy) {
+        this.x = dx;
+        this.y = dy;
     }
 }

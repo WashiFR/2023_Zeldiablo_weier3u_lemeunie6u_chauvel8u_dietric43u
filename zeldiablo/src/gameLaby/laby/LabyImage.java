@@ -54,17 +54,17 @@ public class LabyImage implements DessinJeu {
                     Image mur = new Image(MUR, TAILLE_CASE, TAILLE_CASE, false, false);
                     gc.drawImage(mur, i * TAILLE_CASE, j * TAILLE_CASE);
                 }
-                if (laby.getMonstre(i, j)) {
+                if (laby.etreMonstre(i, j)) {
                     // Affiche l'image du monstre
                     Image monstre = new Image(MONSTRE, TAILLE_CASE - TAILLE_CASE * 0.20, TAILLE_CASE, false, false);
                     gc.drawImage(monstre, i * TAILLE_CASE + TAILLE_CASE * 0.05, j * TAILLE_CASE - TAILLE_CASE * 0.05);
                 }
-                if (laby.getFantome(i, j)) {
+                if (laby.etreFantome(i, j)) {
                     // Affiche l'image du fantome
                     Image fantome = new Image(FANTOME, TAILLE_CASE - TAILLE_CASE * 0.40, TAILLE_CASE, false, false);
                     gc.drawImage(fantome, i * TAILLE_CASE + TAILLE_CASE * 0.20, j * TAILLE_CASE - TAILLE_CASE * 0.20);
                 }
-                if (laby.depart[0] == i && laby.depart[1] == j){
+                if (laby.getDepart()[0] == i && laby.getDepart()[1] == j){
                     Image depart = new Image(DEPART, TAILLE_CASE, TAILLE_CASE, false, false);
                     gc.drawImage(depart, i * TAILLE_CASE, j * TAILLE_CASE);
                 }
@@ -72,17 +72,17 @@ public class LabyImage implements DessinJeu {
         }
 
         // Affichage amulette
-        if (laby.amulette != null) {
+        if (laby.getAmulette() != null) {
             Image amulette = new Image(AMULETTE, TAILLE_CASE / 2, TAILLE_CASE / 2, false, false);
-            double ax = laby.amulette.getX();
-            double ay = laby.amulette.getY();
+            double ax = laby.getAmulette().getX();
+            double ay = laby.getAmulette().getY();
             gc.drawImage(amulette, ax * TAILLE_CASE + TAILLE_CASE / 4, ay * TAILLE_CASE + TAILLE_CASE / 4);
         }
 
         // Affiche l'image du joueur
         Image joueur = new Image(PJ, TAILLE_CASE - TAILLE_CASE * 0.40, TAILLE_CASE, false, false);
-        double px = laby.pj.getX();
-        double py = laby.pj.getY();
+        double px = laby.getPJ().getX();
+        double py = laby.getPJ().getY();
         gc.drawImage(joueur, px * TAILLE_CASE + TAILLE_CASE * 0.20, py * TAILLE_CASE - TAILLE_CASE * 0.20);
     }
 }

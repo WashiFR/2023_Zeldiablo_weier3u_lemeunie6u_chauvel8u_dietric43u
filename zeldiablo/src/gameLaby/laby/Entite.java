@@ -5,6 +5,8 @@ public interface Entite {
 
     public boolean etrePresent(int dx, int dy);
 
+    public void seDeplacer(int dx, int dy);
+
     public int getX();
 
     public int getY();
