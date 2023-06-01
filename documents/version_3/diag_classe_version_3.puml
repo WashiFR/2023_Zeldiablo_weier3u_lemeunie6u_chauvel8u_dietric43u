@@ -25,25 +25,42 @@ class LabyJeu{
 +update(secondes : double, clavier : Clavier)
 +init()
 +etreFini() : boolean
++etrePerdu() : boolean
 +getLaby() : Labyrinthe
 }
 Jeu <.. LabyJeu
 LabyJeu "1" -> "1" Labyrinthe: -laby
+
+class Perso{
++ x:int
++ y:int
++ pv:int
++ Perso(dx:int, dy:int)
++ etrePresent(dx:int, dy:int) : boolean
++ getX() : int
++ getY() : int
++ getPV() : int
++ setPV(ajout:int)
+}
 
 class Labyrinthe{
 + <static> MUR : char
 + <static> PJ : char
 + <static> VIDE : char
 + <static> MONSTRE : char
++ <static> AMULETTE : char
 + <static> HAUT : string
 + <static> BAS : string
 + <static> GAUCHE : string
 + <static> DROITE : string
 + murs : boolean[][]
++ amuletteTrouvee : boolean
++ depart : int[]
 + getSuivant(x : int, y : int, String : action) : int[]
 + Labyrinthe(nom : String)
 + deplacerPerso(action : String)
 + etreFini() : boolean
++ etrePerdu() : boolean
 + getLengthY() : int
 + getLength() : int
 + getMur(x : int, y : int) : boolean
@@ -52,6 +69,7 @@ class Labyrinthe{
 }
 Labyrinthe "1" -> "1" Perso : +pj
 Labyrinthe "1" -> "1" Monstre : +monstre
+Labyrinthe "1" -> "1" Amulette : +amulette
 
 class MainLaby{
 - <static> main(args : String[])
@@ -66,13 +84,14 @@ class Monstre{
 + etrePresent(dx:int,dy:int) : boolean
 + getX() : int
 + getY() : int
++ attaquer(p:Perso)
 }
 
-class Perso{
+class Amulette{
 + x:int
 + y:int
-+ Perso(dx:int, dy:int)
-+ etrePresent(dx:int, dy:int) : boolean
++ Amulette(x:int,y:int)
++ etrePresent(dx:int,dy:int) : boolean
 + getX() : int
 + getY() : int
 }

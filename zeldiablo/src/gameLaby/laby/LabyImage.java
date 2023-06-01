@@ -12,15 +12,23 @@ import javafx.scene.image.Image;
  */
 public class LabyImage implements DessinJeu {
 
-    public static final String MUR = "file:./src/gameLaby/laby/img/wall.png";
+    /**
+     * Chemin vers les images
+     */
+    public static final String PATH = "file:./src/gameLaby/laby/img/";
 
-    public static final String PJ = "file:./src/gameLaby/laby/img/player.png";
+    /**
+     * Constantes pour les images
+     */
+    public static final String MUR = PATH + "wall.png";
 
-    public static final String MONSTRE = "file:./src/gameLaby/laby/img/monster.png";
+    public static final String PJ = PATH + "player.png";
 
-    public static final String SOL = "file:./src/gameLaby/laby/img/floor.png";
+    public static final String MONSTRE = PATH + "monster.png";
 
-    public static final String AMULETTE = "file:./src/gameLaby/laby/img/amulet.png";
+    public static final String SOL = PATH + "floor.png";
+
+    public static final String AMULETTE = PATH + "amulet.png";
 
     public static final String FANTOME = "file:./src/gameLaby/laby/img/fantome.png";
 
@@ -50,8 +58,8 @@ public class LabyImage implements DessinJeu {
                     gc.drawImage(mur, i * TAILLE_CASE, j * TAILLE_CASE);
                 } else if (laby.getMonstre(i, j)) {
                     // Affiche l'image du monstre
-                    Image monstre = new Image(MONSTRE, TAILLE_CASE, TAILLE_CASE, false, false);
-                    gc.drawImage(monstre, i * TAILLE_CASE, j * TAILLE_CASE);
+                    Image monstre = new Image(MONSTRE, TAILLE_CASE - 10, TAILLE_CASE, false, false);
+                    gc.drawImage(monstre, i * TAILLE_CASE + 5, j * TAILLE_CASE - 5);
                 }
             }
         }
@@ -63,10 +71,11 @@ public class LabyImage implements DessinJeu {
             double ay = laby.amulette.getY();
             gc.drawImage(amulette, ax * TAILLE_CASE + TAILLE_CASE / 4, ay * TAILLE_CASE + TAILLE_CASE / 4);
         }
+
         // Affiche l'image du joueur
-        Image joueur = new Image(PJ, TAILLE_CASE, TAILLE_CASE, false, false);
+        Image joueur = new Image(PJ, TAILLE_CASE - 20, TAILLE_CASE, false, false);
         double px = laby.pj.getX();
         double py = laby.pj.getY();
-        gc.drawImage(joueur, px * TAILLE_CASE, py * TAILLE_CASE);
+        gc.drawImage(joueur, px * TAILLE_CASE + 10, py * TAILLE_CASE - 10);
     }
 }

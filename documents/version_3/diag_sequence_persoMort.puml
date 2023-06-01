@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant Main
+participant "l:LabyJeu" as l
+participant "laby:Labyrinthe" as laby
+participant System
+Main -> l : update(double secondes, Clavier clavier)
+activate l
+alt le personnage n'a plus de vie
+l -> laby : etrePerdu()
+activate laby
+laby --> l : true
+deactivate laby
+l -> System : exit(0)
+activate System
+System --> l
+deactivate System
+else le personnage a encore de la vie
+l -> laby : etrePerdu()
+activate laby
+laby --> l : false
+deactivate laby
+end
+l --> Main : void
+@enduml

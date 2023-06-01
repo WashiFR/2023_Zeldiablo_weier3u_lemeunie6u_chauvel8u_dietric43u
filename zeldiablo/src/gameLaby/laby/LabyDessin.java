@@ -54,7 +54,10 @@ public class LabyDessin implements DessinJeu {
         gc.fillOval(px * TAILLE_CASE, py * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
 
         //dessin Amulette
+<<<<<<< HEAD
 
+=======
+>>>>>>> f44fcde20c951b00d41e520992ddf37a531fc1b7
         if (laby.amulette != null) {
             gc.setFill(Color.YELLOW);
             double ax = laby.amulette.getX();
