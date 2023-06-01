@@ -3,7 +3,7 @@ package gameLaby.laby;
 /**
  * classe monstre : représente un monstre situe initialement en x,y
  */
-public class Monstre {
+public class Monstre implements Entite {
     /**
      * position du monstre
      */

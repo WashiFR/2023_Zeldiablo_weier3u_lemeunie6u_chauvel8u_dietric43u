@@ -22,6 +22,8 @@ public class LabyImage implements DessinJeu {
 
     public static final String AMULETTE = "file:./src/gameLaby/laby/img/amulet.png";
 
+    public static final String FANTOME = "file:./src/gameLaby/laby/img/fantome.png";
+
     private static final int TAILLE_CASE = 50;
 
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
@@ -37,7 +39,12 @@ public class LabyImage implements DessinJeu {
             for (int j = 0; j < laby.getLengthY(); j++) {
                 Image sol = new Image(SOL, TAILLE_CASE, TAILLE_CASE, false, false);
                 gc.drawImage(sol, i * TAILLE_CASE, j * TAILLE_CASE);
-                if (laby.getMur(i, j)) {
+                if (laby.getFantome(i, j)) {
+                    // Affiche l'image du fantome
+                    Image fantome = new Image(FANTOME, TAILLE_CASE, TAILLE_CASE, false, false);
+                    gc.drawImage(fantome, i * TAILLE_CASE, j * TAILLE_CASE);
+                }
+                else if (laby.getMur(i, j)) {
                     // Affiche l'image du mur
                     Image mur = new Image(MUR, TAILLE_CASE, TAILLE_CASE, false, false);
                     gc.drawImage(mur, i * TAILLE_CASE, j * TAILLE_CASE);
