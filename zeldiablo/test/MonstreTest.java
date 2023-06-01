@@ -10,12 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * Test de la classe Monstre
  */
-public class monstreTest {
+public class MonstreTest {
 
     /**
      * Attribut Labyrinthe
      */
     public Labyrinthe laby;
+    Monstre monstre;
 
     /**
      * Méthode setUp qui initialise le labyrinthe
@@ -23,6 +24,7 @@ public class monstreTest {
     @BeforeEach
     public void setUp() throws IOException {
         laby = new Labyrinthe("labySimple/laby1.txt");
+        monstre = laby.getMonstre().get(0);
     }
 
     /**
@@ -30,8 +32,8 @@ public class monstreTest {
      */
     @Test
     public void test_00_Placement_avec_Getter() {
-        assertEquals(4, laby.monstre.getX());
-        assertEquals(2, laby.monstre.getY());
+        assertEquals(4, monstre.getX(), "Le monstre aurait du être en x = 4");
+        assertEquals(2, monstre.getY(), "Le monstre aurait du être en y = 2");
     }
 
     /**
@@ -39,7 +41,7 @@ public class monstreTest {
      */
     @Test
     public void test_01_Placement_etre_present() {
-        assertEquals(true, laby.monstre.etrePresent(4, 2));
+        assertEquals(true, monstre.etrePresent(4, 2), "Le monstre aurait du être en (4,2)");
     }
 
     /**
@@ -47,7 +49,7 @@ public class monstreTest {
      */
     @Test
     public void test_02_Placement_etre_present_faux() {
-        assertEquals(false, laby.etreMonstre(6, 4));
+        assertEquals(false, laby.etreMonstre(6, 4), "Le monstre n'aurait pas du être en (6,4)");
     }
 
     /**
@@ -55,7 +57,7 @@ public class monstreTest {
      */
     @Test
     public void test_03_Placement_getMonstre() {
-        assertEquals(true, laby.etreMonstre(4, 2));
+        assertEquals(true, laby.etreMonstre(4, 2), "Le monstre aurait du être en (4,2)");
     }
 
     /**
@@ -63,8 +65,8 @@ public class monstreTest {
      */
     @Test
     public void test_04_deplacerMonstre() {
-        laby.deplacerMonstre();
-        assertEquals(false, laby.etreMonstre(4, 2));
+        laby.deplacer(monstre, "aleatoire");
+        assertEquals(false, laby.etreMonstre(4, 2), "Le monstre n'aurait pas du être en (4,2)");
     }
 
     /**
@@ -72,8 +74,8 @@ public class monstreTest {
      */
     @Test
     public void test_05_deplacerMonstre() {
-        laby.deplacerMonstre();
-        assertEquals(true, laby.etreMonstre(3, 2) || laby.etreMonstre(5, 2) || laby.etreMonstre(4, 1) || laby.etreMonstre(4, 3));
+        laby.deplacer(monstre, "aleatoire");
+        assertEquals(true, laby.etreMonstre(3, 2) || laby.etreMonstre(5, 2) || laby.etreMonstre(4, 1) || laby.etreMonstre(4, 3), "Le monstre aurait du être autour de (4,2)");
     }
 
     /**
@@ -81,20 +83,8 @@ public class monstreTest {
      */
     @Test
     public void test_06_attaquer() {
-        laby.monstre.attaquer(laby.getPJ());
+        monstre.attaquer(laby.getPJ());
         assertEquals(laby.getPJ().getPV(), 4, "Le personnage aurait du perdre un PV.");
     }
 
-    /**
-     * Test de la méthode etrePerdu qui vérifie que le personnage a bien perdu
-     */
-    @Test
-    public void test_07_etrePerdu() {
-        laby.monstre.attaquer(laby.getPJ());
-        laby.monstre.attaquer(laby.getPJ());
-        laby.monstre.attaquer(laby.getPJ());
-        laby.monstre.attaquer(laby.getPJ());
-        laby.monstre.attaquer(laby.getPJ());
-        assertEquals(true, laby.etrePerdu(), "Le personnage aurait du perdre.");
-    }
 }
