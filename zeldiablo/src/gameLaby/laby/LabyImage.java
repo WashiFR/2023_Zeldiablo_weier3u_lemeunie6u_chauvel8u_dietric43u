@@ -30,7 +30,7 @@ public class LabyImage implements DessinJeu {
 
     public static final String AMULETTE = PATH + "amulet.png";
 
-    public static final String FANTOME = "file:./src/gameLaby/laby/img/fantome.png";
+    public static final String FANTOME = PATH + "fantome.png";
 
     private static final int TAILLE_CASE = 50;
 
@@ -47,19 +47,20 @@ public class LabyImage implements DessinJeu {
             for (int j = 0; j < laby.getLengthY(); j++) {
                 Image sol = new Image(SOL, TAILLE_CASE, TAILLE_CASE, false, false);
                 gc.drawImage(sol, i * TAILLE_CASE, j * TAILLE_CASE);
-                if (laby.getFantome(i, j)) {
-                    // Affiche l'image du fantome
-                    Image fantome = new Image(FANTOME, TAILLE_CASE, TAILLE_CASE, false, false);
-                    gc.drawImage(fantome, i * TAILLE_CASE, j * TAILLE_CASE);
-                }
-                else if (laby.getMur(i, j)) {
+                if (laby.getMur(i, j)) {
                     // Affiche l'image du mur
                     Image mur = new Image(MUR, TAILLE_CASE, TAILLE_CASE, false, false);
                     gc.drawImage(mur, i * TAILLE_CASE, j * TAILLE_CASE);
-                } else if (laby.getMonstre(i, j)) {
+                }
+                if (laby.getMonstre(i, j)) {
                     // Affiche l'image du monstre
                     Image monstre = new Image(MONSTRE, TAILLE_CASE - 10, TAILLE_CASE, false, false);
                     gc.drawImage(monstre, i * TAILLE_CASE + 5, j * TAILLE_CASE - 5);
+                }
+                if (laby.getFantome(i, j)) {
+                    // Affiche l'image du fantome
+                    Image fantome = new Image(FANTOME, TAILLE_CASE - 20, TAILLE_CASE, false, false);
+                    gc.drawImage(fantome, i * TAILLE_CASE + 10, j * TAILLE_CASE - 10);
                 }
             }
         }
