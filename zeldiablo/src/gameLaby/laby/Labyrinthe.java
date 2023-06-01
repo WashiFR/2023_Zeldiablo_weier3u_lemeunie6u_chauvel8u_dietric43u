@@ -3,6 +3,7 @@ package gameLaby.laby;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * classe labyrinthe. represente un labyrinthe avec
@@ -44,14 +45,14 @@ public class Labyrinthe {
     public boolean[][] murs;
 
     /**
-     * le monstre du labyrinthe
+     * les monstres du labyrinthe
      */
-    public Monstre monstre;
+    public ArrayList<Monstre> monstres;
 
     /**
-     * le fantome du labyrinthe
+     * les fantomes du labyrinthe
      */
-    public Fantome fantome;
+    public ArrayList<Fantome> fantomes;
 
     /**
      * l'amulette du labyrinthe
@@ -120,9 +121,9 @@ public class Labyrinthe {
 
         // creation labyrinthe vide
         this.murs = new boolean[nbColonnes][nbLignes];
-        this.monstre = null;
+        this.monstres = new ArrayList<Monstre>();
         this.pj = null;
-        this.fantome = null;
+        this.fantomes = new ArrayList<Fantome>();
 
         // lecture des cases
         String ligne = bfRead.readLine();
@@ -152,13 +153,13 @@ public class Labyrinthe {
                         this.depart = new int[]{colonne, numeroLigne};
                         break;
                     case MONSTRE:
-                        this.monstre = new Monstre(colonne, numeroLigne);
+                        this.monstres.add(new Monstre(colonne, numeroLigne));
                         break;
                     case AMULETTE:
                         this.amulette = new Amulette(colonne, numeroLigne);
                         break;
                     case FANTOME:
-                        this.fantome = new Fantome(colonne, numeroLigne);
+                        this.fantomes.add(new Fantome(colonne, numeroLigne));
                         break;
                     default:
                         throw new Error("caractere inconnu " + c);
@@ -202,19 +203,24 @@ public class Labyrinthe {
 
 
 
-        // attaque du monstre si le personnage est a cote
-        if (((this.pj.getX() == this.monstre.getX() - 1) && (this.pj.getY() == this.monstre.getY())) ||
-                ((this.pj.getX() == this.monstre.getX() + 1) && (this.pj.getY() == this.monstre.getY())) ||
-                ((this.pj.getY() == this.monstre.getY() - 1) && (this.pj.getX() == this.monstre.getX())) ||
-                ((this.pj.getY() == this.monstre.getY() + 1) && (this.pj.getX() == this.monstre.getX()))) {
-            this.monstre.attaquer(this.pj);
+        // attaque des monstres si le personnage est a cote
+        for (Monstre m : monstres) {
+            if (((this.pj.getX() == m.getX() - 1) && (this.pj.getY() == m.getY())) ||
+                    ((this.pj.getX() == m.getX() + 1) && (this.pj.getY() == m.getY())) ||
+                    ((this.pj.getY() == m.getY() - 1) && (this.pj.getX() == m.getX())) ||
+                    ((this.pj.getY() == m.getY() + 1) && (this.pj.getX() == m.getX()))) {
+                m.attaquer(this.pj);
+            }
         }
-        // attaque du fantome si le personnage est a cote
-        if (((this.pj.getX() == this.fantome.getX() - 1) && (this.pj.getY() == this.fantome.getY())) ||
-                ((this.pj.getX() == this.fantome.getX() + 1) && (this.pj.getY() == this.fantome.getY())) ||
-                ((this.pj.getY() == this.fantome.getY() - 1) && (this.pj.getX() == this.fantome.getX())) ||
-                ((this.pj.getY() == this.fantome.getY() + 1) && (this.pj.getX() == this.fantome.getX()))) {
-            this.fantome.attaquer(this.pj);
+
+        // attaque des fantomes si le personnage est a cote
+        for (Fantome f : fantomes) {
+            if (((this.pj.getX() == f.getX() - 1) && (this.pj.getY() == f.getY())) ||
+                    ((this.pj.getX() == f.getX() + 1) && (this.pj.getY() == f.getY())) ||
+                    ((this.pj.getY() == f.getY() - 1) && (this.pj.getX() == f.getX())) ||
+                    ((this.pj.getY() == f.getY() + 1) && (this.pj.getX() == f.getX()))) {
+                f.attaquer(this.pj);
+            }
         }
     }
 
@@ -275,9 +281,9 @@ public class Labyrinthe {
      * deplace le monstre aléatoirement
      * gere la collision avec les murs et avec le personnage
      */
-    public void deplacerMonstre() {
+    public void deplacerMonstre(Monstre m) {
         // case courante
-        int[] courante = {this.monstre.x, this.monstre.y};
+        int[] courante = {m.x, m.y};
 
         // choix aléatoire de l'action
         int choix = (int) (Math.random() * 4);
@@ -302,10 +308,10 @@ public class Labyrinthe {
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur ou le joueur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]] && !this.pj.etrePresent(suivante[0], suivante[1])&& !this.fantome.etrePresent(suivante[0], suivante[1])) {
+        if (!this.murs[suivante[0]][suivante[1]] && !this.pj.etrePresent(suivante[0], suivante[1])&& !getFantome(suivante[0], suivante[1])) {
             // on met a jour le monstre
-            this.monstre.x = suivante[0];
-            this.monstre.y = suivante[1];
+            m.x = suivante[0];
+            m.y = suivante[1];
         }
     }
 
@@ -318,16 +324,26 @@ public class Labyrinthe {
      * @return monstre en (x,y)
      */
     public boolean getMonstre(int x, int y) {
-        return this.monstre.etrePresent(x, y);
+        boolean present = false;
+        for (Monstre m : monstres) {
+            if (m.etrePresent(x, y))
+                present = true;
+        }
+        return present;
     }
 
     public boolean getFantome(int x, int y) {
-        return this.fantome.etrePresent(x, y);
+        boolean present = false;
+        for (Fantome f : fantomes) {
+            if (f.etrePresent(x, y))
+                present = true;
+        }
+        return present;
     }
 
-    public void deplacerFantome() {
+    public void deplacerFantome(Fantome f) {
         // case courante
-        int[] courante = {this.fantome.x, this.fantome.y};
+        int[] courante = {f.x, f.y};
 
         // choix aléatoire de l'action
         int choix = (int) (Math.random() * 4);
@@ -351,11 +367,11 @@ public class Labyrinthe {
         // calcule case suivante
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
-        // si c'est pas un mur ou le joueur, on effectue le deplacement
-        if (!this.pj.etrePresent(suivante[0], suivante[1]) && !this.monstre.etrePresent(suivante[0], suivante[1])&&suivante[0]>=0&&suivante[1]>=0&&suivante[0]<getLength()&&suivante[1]<getLengthY()) {
+        // si c'est pas un monstre ou le joueur, on effectue le deplacement
+        if (!this.pj.etrePresent(suivante[0], suivante[1]) && !getMonstre(suivante[0], suivante[1])&&suivante[0]>=0&&suivante[1]>=0&&suivante[0]<getLength()&&suivante[1]<getLengthY()) {
             // on met a jour le monstre
-            this.fantome.x = suivante[0];
-            this.fantome.y = suivante[1];
+            f.x = suivante[0];
+            f.y = suivante[1];
         }
     }
 }

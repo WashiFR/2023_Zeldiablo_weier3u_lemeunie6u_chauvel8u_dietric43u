@@ -38,15 +38,21 @@ public class LabyJeu implements Jeu {
             this.laby.deplacerPerso(Labyrinthe.GAUCHE);
         if (clavier.droite)
             this.laby.deplacerPerso(Labyrinthe.DROITE);
-        // deplace le monstre avec une proba de 5%
-        double randMonstre = Math.random();
-        if (randMonstre <= 0.05)
-            this.laby.deplacerMonstre();
-        // deplace le fantome avec une proba de 5%
-        double randFantome = Math.random();
-        if (randFantome <= 0.05)
-            this.laby.deplacerFantome();
-        // TODO : update secondes
+
+        // deplace les monstres avec une proba de 5%
+        for (Monstre m : laby.monstres) {
+            double randMonstre = Math.random();
+            if (randMonstre <= 0.05)
+                this.laby.deplacerMonstre(m);
+        }
+
+        // deplace les fantomes avec une proba de 5%
+        for (Fantome f : laby.fantomes) {
+            double randFantome = Math.random();
+            if (randFantome <= 0.05)
+                this.laby.deplacerFantome(f);
+        }
+
         // Vérifier si le joueur a gagné
         if (this.etreFini()) {
             System.out.println("Vous avez gagné !");
