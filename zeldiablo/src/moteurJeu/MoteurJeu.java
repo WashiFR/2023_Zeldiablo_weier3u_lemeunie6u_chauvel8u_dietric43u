@@ -103,8 +103,8 @@ public class MoteurJeu extends Application {
         Button quitter = new Button("Quitter");
         //jouer.setBackground(new javafx.scene.layout.Background(new javafx.scene.layout.BackgroundFill(Color.DARKSEAGREEN, null, null)));
         //quitter.setBackground(new javafx.scene.layout.Background(new javafx.scene.layout.BackgroundFill(Color.DARKSEAGREEN, null, null)));
-        ImageView image = new ImageView(new Image("file:./src/gameLaby/laby/img/r.png"));
-        ImageView porte = new ImageView(new Image("file:./src/gameLaby/laby/img/porte.png"));
+        ImageView image = new ImageView(new Image("file:./src/gameLaby/img/r.png"));
+        ImageView porte = new ImageView(new Image("file:./src/gameLaby/img/porte.png"));
         porte.setX(180);
         porte.setFitHeight(600);
         porte.setFitWidth(400);

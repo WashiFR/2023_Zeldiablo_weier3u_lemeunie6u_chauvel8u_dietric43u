@@ -15,7 +15,7 @@ public class LabyImage implements DessinJeu {
     /**
      * Chemin vers les images
      */
-    public static final String PATH = "file:./src/gameLaby/laby/img/";
+    public static final String PATH = "file:./src/gameLaby/img/";
 
     /**
      * Constantes pour les images
@@ -29,6 +29,8 @@ public class LabyImage implements DessinJeu {
     public static final String SOL = PATH + "floor.png";
 
     public static final String AMULETTE = PATH + "amulet.png";
+
+    public static final String DEPART = PATH + "start.png";
 
     public static final String FANTOME = PATH + "fantome.png";
 
@@ -61,6 +63,10 @@ public class LabyImage implements DessinJeu {
                     // Affiche l'image du fantome
                     Image fantome = new Image(FANTOME, TAILLE_CASE - TAILLE_CASE * 0.40, TAILLE_CASE, false, false);
                     gc.drawImage(fantome, i * TAILLE_CASE + TAILLE_CASE * 0.20, j * TAILLE_CASE - TAILLE_CASE * 0.20);
+                }
+                if (laby.depart[0] == i && laby.depart[1] == j){
+                    Image depart = new Image(DEPART, TAILLE_CASE, TAILLE_CASE, false, false);
+                    gc.drawImage(depart, i * TAILLE_CASE, j * TAILLE_CASE);
                 }
             }
         }
