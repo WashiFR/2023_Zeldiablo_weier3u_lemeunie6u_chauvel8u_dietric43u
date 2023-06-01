@@ -32,7 +32,7 @@ public class LabyImage implements DessinJeu {
 
     public static final String FANTOME = PATH + "fantome.png";
 
-    private static final int TAILLE_CASE = 50;
+    private static final int TAILLE_CASE = 40;
 
     public void dessinerJeu(Jeu jeu, Canvas canvas) {
         LabyJeu labyJeu = (LabyJeu) jeu;
@@ -54,13 +54,13 @@ public class LabyImage implements DessinJeu {
                 }
                 if (laby.getMonstre(i, j)) {
                     // Affiche l'image du monstre
-                    Image monstre = new Image(MONSTRE, TAILLE_CASE - 10, TAILLE_CASE, false, false);
-                    gc.drawImage(monstre, i * TAILLE_CASE + 5, j * TAILLE_CASE - 5);
+                    Image monstre = new Image(MONSTRE, TAILLE_CASE - TAILLE_CASE * 0.20, TAILLE_CASE, false, false);
+                    gc.drawImage(monstre, i * TAILLE_CASE + TAILLE_CASE * 0.05, j * TAILLE_CASE - TAILLE_CASE * 0.05);
                 }
                 if (laby.getFantome(i, j)) {
                     // Affiche l'image du fantome
-                    Image fantome = new Image(FANTOME, TAILLE_CASE - 20, TAILLE_CASE, false, false);
-                    gc.drawImage(fantome, i * TAILLE_CASE + 10, j * TAILLE_CASE - 10);
+                    Image fantome = new Image(FANTOME, TAILLE_CASE - TAILLE_CASE * 0.40, TAILLE_CASE, false, false);
+                    gc.drawImage(fantome, i * TAILLE_CASE + TAILLE_CASE * 0.20, j * TAILLE_CASE - TAILLE_CASE * 0.20);
                 }
             }
         }
@@ -74,9 +74,9 @@ public class LabyImage implements DessinJeu {
         }
 
         // Affiche l'image du joueur
-        Image joueur = new Image(PJ, TAILLE_CASE - 20, TAILLE_CASE, false, false);
+        Image joueur = new Image(PJ, TAILLE_CASE - TAILLE_CASE * 0.40, TAILLE_CASE, false, false);
         double px = laby.pj.getX();
         double py = laby.pj.getY();
-        gc.drawImage(joueur, px * TAILLE_CASE + 10, py * TAILLE_CASE - 10);
+        gc.drawImage(joueur, px * TAILLE_CASE + TAILLE_CASE * 0.20, py * TAILLE_CASE - TAILLE_CASE * 0.20);
     }
 }

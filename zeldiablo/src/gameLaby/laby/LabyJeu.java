@@ -19,7 +19,7 @@ public class LabyJeu implements Jeu {
      * Constructeur de LabyJeu
      */
     public LabyJeu() throws IOException {
-        laby = new Labyrinthe("labySimple/laby1.txt");
+        laby = new Labyrinthe("labySimple/laby3.txt");
     }
 
     /**
