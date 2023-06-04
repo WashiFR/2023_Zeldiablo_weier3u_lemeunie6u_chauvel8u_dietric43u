@@ -14,11 +14,88 @@ interface Jeu{
 }
 
 package gameLaby.laby {
+top to bottom direction
+class Monstre{
+- x:int
+- y:int
++ Monstre(dx:int,dy:int)
++ etrePresent(dx:int,dy:int) : boolean
++ getX() : int
++ getY() : int
++ attaquer(p:Perso)
++ seDeplacer(dx:int, dy:int)
+}
+Entite <.. Monstre
+
+class Perso{
+- x:int
+- y:int
++ Perso(dx:int, dy:int)
++ etrePresent(dx:int, dy:int) : boolean
++ getX() : int
++ getY() : int
++ getPV() : int
++ setPV(ajout:int)
++ seDeplacer(dx:int, dy:int)
+}
+Entite <.. Perso
+
+class Fantome{
+- x:int
+- y:int
++ etrePresent(dx:int,dy:int) : boolean
++ seDeplacer(dx:int,dy:int)
++ getX() : int
++ getY() : int
++ attaquer(p:Perso)
+}
+Entite <.. Fantome
+
+class Labyrinthe{
++ <static> MUR : char
++ <static> PJ : char
++ <static> VIDE : char
++ <static> MONSTRE : char
++ <static> FANTOME : char
++ <static> AMULETTE : char
++ <static> HAUT : string
++ <static> BAS : string
++ <static> GAUCHE : string
++ <static> DROITE : string
++ murs : boolean[][]
+- amuletteTrouvee : boolean
+- depart : int[]
++ getSuivant(x : int, y : int, String : action) : int[]
++ Labyrinthe(nom : String)
++ etreFini() : boolean
++ etrePerdu() : boolean
++ getLengthY() : int
++ getLength() : int
++ getMur(x : int, y : int) : boolean
++ getMonstre() : ArrayList<Monstre>
++ getFantome() : ArrayList<Fantome>
++ getPJ() : Perso
++ getAmulette() : Amulette
++ getDepart() : int[]
++ etreMonstre(x : int, y : int) : boolean
++ etreFantome(x : int, y : int) : boolean
++ deplacer(e:Entite, action:String)
++ actionAleatoire() : String
+}
+Labyrinthe "1" -> "1" Perso : -pj
+Labyrinthe "1" -> "*" Monstre : -monstres
+Labyrinthe "1" -> "*" Fantome : -fantomes
+Labyrinthe "1" -> "1" Amulette : -amulette
+
 class LabyImage{
+- <static> PATH : String
 - <static> MUR : String
-- <static> JOUEUR : String
+- <static> PJ : String
 - <static> MONSTRE : String
 - <static> SOL : String
+- <static> AMULETTE : String
+- <static> DEPART : String
+- <static> FANTOME : String
 - <static> TAILLE_CASE : double
 + dessinerJeu(jeu:Jeu, canvas:Canvas)
 }
@@ -29,35 +106,11 @@ class LabyJeu{
 +update(secondes : double, clavier : Clavier)
 +init()
 +etreFini() : boolean
++etrePerdu() : boolean
 +getLaby() : Labyrinthe
 }
 Jeu <.. LabyJeu
 LabyJeu "1" -> "1" Labyrinthe: -laby
-
-class Labyrinthe{
-+ <static> MUR : char
-+ <static> PJ : char
-+ <static> VIDE : char
-+ <static> MONSTRE : char
-+ <static> HAUT : string
-+ <static> BAS : string
-+ <static> GAUCHE : string
-+ <static> DROITE : string
-+ pj : Perso
-+ murs : boolean[][]
-+ monstre : Monstre
-+ getSuivant(x : int, y : int, String : action) : int[]
-+ Labyrinthe(nom : String)
-+ deplacerPerso(action : String)
-+ etreFini() : boolean
-+ getLengthY() : int
-+ getLength() : int
-+ getMur(x : int, y : int) : boolean
-+ deplacerMonstre()
-+ getMonstre(x : int, y : int) : boolean
-}
-Labyrinthe "1" -> "1" Perso : +pj
-Labyrinthe "1" -> "1" Monstre : +monstre
 
 class MainLaby{
 - <static> main(args : String[])
@@ -65,22 +118,22 @@ class MainLaby{
 MainLaby -> LabyImage : create
 MainLaby -> LabyJeu : create
 
-class Monstre{
-+ x:int
-+ y:int
-+ Monstre(dx:int,dy:int)
-+ etrePresent(dx:int,dy:int) : boolean
-+ getX() : int
-+ getY() : int
+class Amulette{
+- x:int
+- y:int
++Amulette(x:int,y:int)
++etrePresent(dx:int,dy:int) : boolean
++getX() : int
++getY() : int
 }
 
-class Perso{
-+ x:int
-+ y:int
-+ Perso(dx:int, dy:int)
-+ etrePresent(dx:int, dy:int) : boolean
-+ getX() : int
-+ getY() : int
+
+
+interface Entite{
++etrePresent(dx:int,dy:int) : boolean
++seDeplacer(dx:int,dy:int)
++getX() : int
++getY() : int
 }
 }
 @enduml
