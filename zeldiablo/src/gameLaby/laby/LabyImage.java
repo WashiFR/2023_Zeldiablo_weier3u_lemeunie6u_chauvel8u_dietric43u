@@ -72,6 +72,7 @@ public class LabyImage implements DessinJeu {
                     gc.drawImage(fantome, i * TAILLE_CASE + TAILLE_CASE * 0.20, j * TAILLE_CASE - TAILLE_CASE * 0.20);
                 }
                 if (laby.getDepart()[0] == i && laby.getDepart()[1] == j){
+                    // Affiche l'image du depart
                     Image depart = new Image(DEPART, TAILLE_CASE, TAILLE_CASE, false, false);
                     gc.drawImage(depart, i * TAILLE_CASE, j * TAILLE_CASE);
                 }

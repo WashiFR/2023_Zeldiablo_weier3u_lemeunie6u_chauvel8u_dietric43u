@@ -1,24 +1,38 @@
 package gameLaby.laby;
 
+/**
+ * classe troll : représente un troll situe initialement en x,y
+ */
 public class Troll implements Entite{
-    private int x,y,vie;
+
+    /**
+     * position du troll et pv
+     */
+    private int x, y, pv;
+
+    /**
+     * constructeur
+     *
+     * @param dx position selon x
+     * @param dy position selon y
+     */
     public Troll(int dx, int dy) {
         this.x = dx;
         this.y = dy;
-        this.vie = 3;
+        this.pv = 3;
     }
 
     @Override
     public void setPv(int pv) {
-        this.vie = pv + this.vie ;
-        if(this.vie > 3){
-            this.vie = 3;
+        this.pv += pv;
+        if(this.pv > 3){
+            this.pv = 3;
         }
     }
 
     @Override
     public int getPv() {
-        return this.vie;
+        return this.pv;
     }
 
     @Override
@@ -26,13 +40,24 @@ public class Troll implements Entite{
         return (this.x == dx && this.y == dy);
     }
 
-    public void attaquer(Perso p) {
+    @Override
+    public void attaquer(Entite p) {
         p.setPv(-1);
     }
+
     @Override
     public void seDeplacer(int dx, int dy) {
         this.x = dx;
         this.y = dy;
+    }
+
+    @Override
+    public int getX() {
+        return this.x;
+    }
+    @Override
+    public int getY() {
+        return this.y;
     }
 
     public void setX(int x) {
@@ -41,14 +66,5 @@ public class Troll implements Entite{
 
     public void setY(int y) {
         this.y = y;
-    }
-    @Override
-    public int getX() {
-        return this.x;
-    }
-
-    @Override
-    public int getY() {
-        return this.y;
     }
 }

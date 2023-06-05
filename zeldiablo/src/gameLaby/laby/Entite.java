@@ -21,7 +21,7 @@ public interface Entite {
      * Retourne true si l'entité est présente au co indiqués
      * @param dx co X
      * @param dy co Y
-     * @return
+     * @return true si l'entité est présente
      */
     public boolean etrePresent(int dx, int dy);
 
@@ -34,13 +34,19 @@ public interface Entite {
 
     /**
      * Récupère les co X
-     * @return
+     * @return co X
      */
     public int getX();
 
     /**
-     * Récupère lex co Y
-     * @return
+     * Récupère les co Y
+     * @return co Y
      */
     public int getY();
+
+    /**
+     * Attaque l'entité
+     * @param e entité
+     */
+    public void attaquer(Entite e);
 }

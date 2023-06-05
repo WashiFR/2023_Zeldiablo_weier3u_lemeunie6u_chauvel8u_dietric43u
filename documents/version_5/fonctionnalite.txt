@@ -1,0 +1,26 @@
+1. Attaque du joueur 
+- Description : 
+Lorsque le joueur appuie sur une touche donnée (par défaut la touche espace), il effectue une attaque contre les monstres qui se trouvent à côté de lui.
+- Critères de validation : 
+  - L'attaque a effectivement lieu quand le joueur appuie sur la touche.
+  - TOUS les monstres à côté du joueur prennent un point de dégât.
+  - TOUS les monstres éloignés du joueur ne subissent pas de dégâts.
+  - S'il n'y a aucun monstre autour du joueur, l'attaque à quand même lieu et empêche le déplacement du joueur, mais les monstres ne prennent pas de dégâts.
+
+2. Gestion d'un menu 
+- Description : 
+Plutot que de lancer directement le jeu, le joueur lance un menu qui lui permet de lancer le jeu ou de quitter l'application. Ce menu ré-apparait lorsque le joueur gagne ou perd.
+- Critères de validation : 
+  - Le menu possède une image spécifique.
+  - Le menu propose deux options jouer ou quitter.
+  - Le menu s'affiche dans la même JFrame que le rendu du jeu.
+  - Pendant le menu, le jeu n'est pas créé et ne tourne pas.
+
+3. Troll
+- Description :
+Les trolls sont un nouveau type de monstre. Un troll se régénère au fur et à mesure.
+- Critères de validation : 
+  - Un troll se déplace de la même manière qu'un monstre de base (les murs sont des obstacles).
+  - Si un Troll ne prend aucun dégât pendant un tour de jeu, il regagne un point de vie.
+  - les attaques des trolls fonctionnent de la même manière que les attaques des monstres de base.
+  - Un troll a par défaut 3 points de vie (à adapter).

@@ -6,14 +6,9 @@ package gameLaby.laby;
 public class Perso implements Entite{
 
     /**
-     * position du personnage
+     * position du personnage et pv
      */
-    private int x, y;
-
-    /**
-     * points de vie du personnage
-     */
-    private int pv;
+    private int x, y, pv;
 
     /**
      * constructeur
@@ -27,20 +22,18 @@ public class Perso implements Entite{
         this.pv = 5;
     }
 
+    @Override
     public boolean etrePresent(int dx, int dy) {
-
         return (this.x == dx && this.y == dy);
     }
 
+    @Override
     public void seDeplacer(int dx, int dy) {
         this.x = dx;
         this.y = dy;
     }
 
-    /**
-     * Attque l'entité si elle est proche du joueur
-     * @param e entité
-     */
+    @Override
     public void attaquer(Entite e){
         if((e.getX() == this.getX() && e.getY() - 1 == this.getY()) ||
                 (e.getX() == this.getX() && e.getY() + 1 == this.getY()) ||
@@ -56,17 +49,19 @@ public class Perso implements Entite{
     // GETTER
     // ############################################
 
-
+    @Override
     public int getX() {
         // getter
         return this.x;
     }
 
+    @Override
     public int getY() {
         //getter
         return this.y;
     }
 
+    @Override
     public int getPv() {
         return this.pv;
     }

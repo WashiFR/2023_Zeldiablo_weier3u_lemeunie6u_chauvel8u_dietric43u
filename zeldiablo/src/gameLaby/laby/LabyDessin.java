@@ -43,23 +43,26 @@ public class LabyDessin implements DessinJeu {
                 } else if (laby.etreMonstre(i, j)) {
                     gc.setFill(Color.PURPLE);
                     gc.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                } else if (laby.etreTroll(i, j)){
+                    gc.setFill(Color.ORANGE);
+                    gc.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                 }
                 if (laby.etreFantome(i, j)) {
                     gc.setFill(Color.BLUE);
                     gc.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                 }
-                if (laby.getDepart()[0] == i && laby.getDepart()[1] == j) {
-                    gc.setFill(Color.GREEN);
-                    gc.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
-                }
+
             }
         }
+        double px = laby.getPJ().getX();
+        double py = laby.getPJ().getY();
 
+        //dessin case depart
+        gc.setFill(Color.GREEN);
+        gc.fillOval(px * TAILLE_CASE, py * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
 
         //dessin joueur
         gc.setFill(Color.RED);
-        double px = laby.getPJ().getX();
-        double py = laby.getPJ().getY();
         gc.fillOval(px * TAILLE_CASE, py * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
 
         //dessin Amulette
