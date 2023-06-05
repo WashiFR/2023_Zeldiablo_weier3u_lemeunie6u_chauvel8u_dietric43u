@@ -83,8 +83,8 @@ class Labyrinthe{
 + actionAleatoire() : String
 }
 Labyrinthe "1" -> "1" Perso : -pj
-Labyrinthe "*" -> "*" Monstre : -monstres
-Labyrinthe "*" -> "*" Fantome : -fantomes
+Labyrinthe "1" -> "*" Monstre : -monstres
+Labyrinthe "1" -> "*" Fantome : -fantomes
 Labyrinthe "1" -> "1" Amulette : -amulette
 
 class LabyImage{
