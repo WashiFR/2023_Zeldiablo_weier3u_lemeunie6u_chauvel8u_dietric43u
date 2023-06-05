@@ -9,11 +9,15 @@ import javafx.beans.property.SimpleLongProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.net.MalformedURLException;
@@ -45,6 +49,8 @@ public class MoteurJeu extends Application {
      */
     private static Jeu jeu = null;
     private static DessinJeu dessin = null;
+
+    private static Stage primaryStage;
 
     /**
      * touches appuyee entre deux frame
@@ -92,57 +98,103 @@ public class MoteurJeu extends Application {
      * creation de l'application avec juste un canvas et des statistiques
      */
     public void start(Stage primaryStage) {
-        // initialisation du canvas de dessin et du container
-        final Canvas canvas = new Canvas();
-        final Pane canvasContainer = new Pane(canvas);
-        canvas.widthProperty().bind(canvasContainer.widthProperty());
-        canvas.heightProperty().bind(canvasContainer.heightProperty());
+        this.primaryStage = primaryStage;
 
-        // affichage des stats
-        final Label stats = new Label();
-        stats.textProperty().bind(frameStats.textProperty());
+        Pane root = new Pane();
+        root.backgroundProperty().setValue(new javafx.scene.layout.Background(new javafx.scene.layout.BackgroundFill(Color.CORNFLOWERBLUE, null, null)));
+        Button jouer = new Button("Jouer");
+        Button quitter = new Button("Quitter");
+        //jouer.setBackground(new javafx.scene.layout.Background(new javafx.scene.layout.BackgroundFill(Color.DARKSEAGREEN, null, null)));
+        //quitter.setBackground(new javafx.scene.layout.Background(new javafx.scene.layout.BackgroundFill(Color.DARKSEAGREEN, null, null)));
+        ImageView image = new ImageView(new Image("file:./src/gameLaby/img/r.png"));
+        ImageView porte = new ImageView(new Image("file:./src/gameLaby/img/porte.png"));
+        porte.setX(180);
+        porte.setFitHeight(600);
+        porte.setFitWidth(400);
+        jouer.setLayoutX(200);
+        jouer.setLayoutY(500);
 
-        // ajout des statistiques en bas de la fenetre
-        final BorderPane root = new BorderPane();
-        root.setCenter(canvasContainer);
-        root.setBottom(stats);
+        quitter.setLayoutX(450);
+        quitter.setLayoutY(500);
+        jouer.setFont(javafx.scene.text.Font.font(30));
+        quitter.setFont(javafx.scene.text.Font.font(30));
 
-        // creation de la scene
-        final Scene scene = new Scene(root, WIDTH, HEIGHT);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
-
-        // listener clavier
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        jouer.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(KeyEvent event) {
-                controle.appuyerTouche(event);
-            }
-        });
+            public void handle(MouseEvent mouseEvent) {
 
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                controle.relacherTouche(event);
-            }
-        });
+                // initialisation du canvas de dessin et du container
+                final Canvas canvas = new Canvas();
+                final Pane canvasContainer = new Pane(canvas);
+                canvas.widthProperty().bind(canvasContainer.widthProperty());
+                canvas.heightProperty().bind(canvasContainer.heightProperty());
+
+                // affichage des stats
+                final Label stats = new Label();
+                stats.textProperty().bind(frameStats.textProperty());
+
+                // ajout des statistiques en bas de la fenetre
+                final BorderPane root = new BorderPane();
+                root.setCenter(canvasContainer);
+                root.setBottom(stats);
+
+                // creation de la scene
+                final Scene scene = new Scene(root, WIDTH, HEIGHT);
+                primaryStage.setTitle("Menu");
+                primaryStage.setScene(scene);
+                primaryStage.show();
 
 
-        // creation du listener souris
-        canvas.addEventHandler(MouseEvent.MOUSE_CLICKED,
-                new EventHandler<MouseEvent>() {
+                // listener clavier
+                scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
                     @Override
-                    public void handle(MouseEvent event) {
-                        if (event.getClickCount() == 2) {
-                            jeu.init();
-                        }
+                    public void handle(KeyEvent event) {
+                        controle.appuyerTouche(event);
                     }
                 });
 
-        // lance la boucle de jeu
-        startAnimation(canvas);
+                scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        controle.relacherTouche(event);
+                    }
+                });
+
+
+                // creation du listener souris
+                canvas.addEventHandler(MouseEvent.MOUSE_CLICKED,
+                        new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                if (event.getClickCount() == 2) {
+                                    jeu.init();
+                                }
+                            }
+                        });
+
+                // lance la boucle de jeu
+                startAnimation(canvas);
+            }});
+
+
+        quitter.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                primaryStage.close();
+            }
+        });
+
+
+        root.getChildren().addAll(image,porte, jouer, quitter);
+
+
+        Scene scene = new Scene(root, 800, 600);
+        primaryStage.setTitle("Zeldiablo");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
+
+
 
     /**
      * gestion de l'animation (boucle de jeu)
@@ -193,4 +245,9 @@ public class MoteurJeu extends Application {
         // lance l'animation
         timer.start();
     }
+
+    public static void fin(){
+        primaryStage.close();
+    }
+
 }
