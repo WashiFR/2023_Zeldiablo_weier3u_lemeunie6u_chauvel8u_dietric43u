@@ -32,7 +32,6 @@ public class FantomeTest {
      */
     @Test
     public void test_00_Placement_avec_Getter() {
-        System.out.println(fantome.getX() + " " + fantome.getY());
         assertEquals(4, fantome.getX(), "Le fantome aurait du être en x = 4");
         assertEquals(4, fantome.getY(), "Le fantome aurait du être en y = 4");
     }
@@ -85,7 +84,7 @@ public class FantomeTest {
     @Test
     public void test_06_attaquer() {
         fantome.attaquer(laby.getPJ());
-        assertEquals(laby.getPJ().getPV(), 4, "Le personnage aurait du perdre un PV.");
+        assertEquals(laby.getPJ().getPv(), 4, "Le personnage aurait du perdre un PV.");
     }
 
 }

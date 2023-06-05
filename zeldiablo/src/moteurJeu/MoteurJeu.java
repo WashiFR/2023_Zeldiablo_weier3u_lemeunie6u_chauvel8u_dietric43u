@@ -50,7 +50,6 @@ public class MoteurJeu extends Application {
     private static Jeu jeu = null;
     private static DessinJeu dessin = null;
 
-    private static Stage primaryStage;
 
     /**
      * touches appuyee entre deux frame
@@ -98,7 +97,6 @@ public class MoteurJeu extends Application {
      * creation de l'application avec juste un canvas et des statistiques
      */
     public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
 
         Pane root = new Pane();
         root.backgroundProperty().setValue(new javafx.scene.layout.Background(new javafx.scene.layout.BackgroundFill(Color.CORNFLOWERBLUE, null, null)));
@@ -246,8 +244,5 @@ public class MoteurJeu extends Application {
         timer.start();
     }
 
-    public static void fin(){
-        primaryStage.close();
-    }
 
 }

@@ -1,0 +1,6 @@
+Pour cette SAE nous avons passé une soutenance et nous devions améliorer nos diagrammes de classe et de séquence. Nous avons donc modifié nos diagrammes de séquence de la version deux
+car ils ont été faits avant le changement de notre conception de projet. Pour notre diagramme de classe final, nous avons changé l'héritage pour le changer d'interface à classe abstraite.
+En effet, on peut ainsi "extends" les classes monstre et perso sur la classe abstraite "Entité" et ensuite on "extends" les classes démons, fantôme et troll de la classe monstre.
+Malheureusement étant donné que ce changement dans le diagramme de classe a été fait dans les derniers délais le code présent dans nos classes n'est pas le même que ce que nous imaginions dans notre conception.
+Le changement de notre diagramme de classe est donc seulement l'idée de ce qu'on se fait du futur que pourrait avoir notre projet. Avec les changements que nous pourrions apportés dans le code en suivant
+ce diagramme de classe, nous pourrions avoir un code plus propre et plus facile à comprendre.

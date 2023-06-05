@@ -3,12 +3,12 @@ package gameLaby.laby;
 /**
  * Fantome
  */
-public class Fantome implements  Entite{
+public class Fantome implements Entite{
 
     /**
-     * attributs
+     * attributs position et pv
      */
-    private int x,y, pv;
+    private int x, y, pv;
 
     /**
      * constructeur
@@ -52,11 +52,8 @@ public class Fantome implements  Entite{
         return this.y;
     }
 
-    /**
-     * Attque le joueur
-     * @param p joueur
-     */
-    public void attaquer(Perso p) {
+    @Override
+    public void attaquer(Entite p) {
         p.setPv(-1);
     }
 }

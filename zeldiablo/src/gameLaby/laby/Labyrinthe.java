@@ -4,10 +4,16 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
 /**
  * classe labyrinthe represente un labyrinthe avec
  * <ul> des murs </ul>
  * <ul> un personnage (x,y) </ul>
+ * <ul> des monstres (x,y) </ul>
+ * <ul> des fantomes (x,y) </ul>
+ * <ul> des trolls (x,y) </ul>
+ * <ul> une amulette (x,y) </ul>
+ *
  */
 public class Labyrinthe {
     /**
@@ -44,9 +50,10 @@ public class Labyrinthe {
      * les fantomes du labyrinthe
      */
     private ArrayList<Fantome> fantomes;
-
+    /**
+     * les trolls du labyrinthe
+     */
     private ArrayList<Troll> trolls;
-
     /**
      * toutes les entites du jeu
      */
@@ -65,8 +72,8 @@ public class Labyrinthe {
     private int[] depart;
     /**
      * retourne la case suivante selon une actions
-     * @param x      case depart
-     * @param y      case depart
+     * @param x case depart
+     * @param y case depart
      * @param action action effectuee
      * @return case suivante
      */
@@ -176,7 +183,7 @@ public class Labyrinthe {
         bfRead.close();
     }
     /**
-     * Le jeu est fini si le personnage n'a plus de pv ou s'il a ramassé l'amulette et qu'il est revenu a la case de départ
+     * Le jeu est fini si le joueur a ramassé l'amulette et qu'il est revenu a la case de départ
      * @return fin du jeu
      */
     public boolean etreFini() {
@@ -195,23 +202,23 @@ public class Labyrinthe {
     // ##################################
     /**
      * return taille selon Y
-     * @return
+     * @return taille selon Y
      */
     public int getLengthY() {
         return murs[0].length;
     }
     /**
      * return taille selon X
-     * @return
+     * @return taille selon X
      */
     public int getLength() {
         return murs.length;
     }
     /**
      * return mur en (i,j)
-     * @param x
-     * @param y
-     * @return
+     * @param x colonne
+     * @param y ligne
+     * @return mur en (i,j)
      */
     public boolean getMur(int x, int y) {
         // utilise le tableau de boolean
@@ -231,11 +238,13 @@ public class Labyrinthe {
     public ArrayList<Fantome> getFantome() {
         return fantomes;
     }
-
+    /**
+     * return la liste des trolls
+     * @return liste des trolls
+     */
     public ArrayList<Troll> getTrolls() {
         return trolls;
     }
-
     /**
      * return liste des entites du jeu
      * @return
@@ -264,9 +273,8 @@ public class Labyrinthe {
     public int[] getDepart() {
         return depart;
     }
-
     /**
-     * return true si le monstre est en (x,y)
+     * return true si un monstre est en (x,y)
      *
      * @param x coordonnee x
      * @param y coordonnee y
@@ -280,7 +288,13 @@ public class Labyrinthe {
         }
         return present;
     }
-
+    /**
+     * return true si un fantome est en (x,y)
+     *
+     * @param x coordonnee x
+     * @param y coordonnee y
+     * @return fantome en (x,y)
+     */
     public boolean etreFantome(int x, int y) {
         boolean present = false;
         for (Fantome f : fantomes) {
@@ -289,7 +303,13 @@ public class Labyrinthe {
         }
         return present;
     }
-
+    /**
+     * return true si un troll est en (x,y)
+     *
+     * @param x coordonnee x
+     * @param y coordonnee y
+     * @return troll en (x,y)
+     */
     public boolean etreTroll(int x, int y) {
         boolean present = false;
         for (Troll t : trolls) {
@@ -298,41 +318,59 @@ public class Labyrinthe {
         }
         return present;
     }
+    /**
+     * return true si un mechant est en (x,y)
+     *
+     * @param x coordonnee x
+     * @param y coordonnee y
+     * @return mechant en (x,y)
+     */
+    public boolean etreMechant(int x, int y) {
+        return etreMonstre(x, y) || etreFantome(x, y) || etreTroll(x, y);
+    }
 
-
+    /**
+     * Méthode deplacer qui permet de déplacer une entité
+     * @param e entite a deplacer
+     * @param action action a effectuer
+     */
     public void deplacer(Entite e, String action) {
         // case courante
         int[] courante = {e.getX(), e.getY()};
 
+        // si l'action est aleatoire, on la genere
         if (action.equals("aleatoire")) {
             action = actionAleatoire();
         }
-
+        // case suivante
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         if (e instanceof Monstre) {
-            // si c'est pas un mur ou le joueur, on effectue le deplacement
-            if (!this.murs[suivante[0]][suivante[1]] && !this.pj.etrePresent(suivante[0], suivante[1]) && !etreFantome(suivante[0], suivante[1])) {
+            // si c'est pas un mur ou le joueur ou un mechant, on effectue le deplacement
+            if (!this.murs[suivante[0]][suivante[1]] && !this.pj.etrePresent(suivante[0], suivante[1]) && !etreMechant(suivante[0], suivante[1])) {
                 // on met a jour le monstre
                 e.seDeplacer(suivante[0], suivante[1]);
             }
         } else if (e instanceof Troll) {
-            // si c'est pas un mur ou le joueur, on effectue le deplacement
-            if (!this.murs[suivante[0]][suivante[1]] && !this.pj.etrePresent(suivante[0], suivante[1]) && !etreFantome(suivante[0], suivante[1])&& !etreMonstre(suivante[0], suivante[1])) {
+            // si c'est pas un mur ou le joueur ou un mechant, on effectue le deplacement
+            if (!this.murs[suivante[0]][suivante[1]] && !this.pj.etrePresent(suivante[0], suivante[1]) && !etreMechant(suivante[0], suivante[1])) {
                 // on met a jour le monstre
                 e.seDeplacer(suivante[0], suivante[1]);
             }
         } else if (e instanceof Fantome) {
-            // si c'est pas un monstre ou le joueur, on effectue le deplacement
-            if (!this.pj.etrePresent(suivante[0], suivante[1]) && !etreMonstre(suivante[0], suivante[1]) && suivante[0] >= 0 && suivante[1] >= 0 && suivante[0] < getLength() && suivante[1] < getLengthY()) {
+            // si c'est pas un mechant ou le joueur, on effectue le deplacement
+            if (!this.pj.etrePresent(suivante[0], suivante[1]) && !etreMechant(suivante[0], suivante[1]) && suivante[0] >= 0 && suivante[1] >= 0 && suivante[0] < getLength() && suivante[1] < getLengthY()) {
                 // on met a jour le monstre
                 e.seDeplacer(suivante[0], suivante[1]);
             }
         } else if (e instanceof Perso) {
-            // si c'est pas un mur ou un monstre, on effectue le deplacement
-            if (!this.murs[suivante[0]][suivante[1]] && !etreMonstre(suivante[0], suivante[1]) && !etreFantome(suivante[0], suivante[1])) {
+            // si c'est pas un mur ou un mechant, on effectue le deplacement
+            if (!this.murs[suivante[0]][suivante[1]] && !etreMechant(suivante[0], suivante[1])) {
                 // on met a jour personnage
                 this.pj.seDeplacer(suivante[0], suivante[1]);
+                for (Troll tr : this.trolls){
+                    tr.setPv(tr.getPv()+1);
+                }
             }
             if (!amuletteTrouvee && amulette.etrePresent(this.pj.getX(), this.pj.getY())) {
                 amuletteTrouvee = true;
@@ -367,7 +405,10 @@ public class Labyrinthe {
         }
     }
 
-
+    /**
+     * Permet de generer une action aleatoire
+     * @return action aleatoire
+     */
     public String actionAleatoire() {
         int choix = (int) (Math.random() * 4);
         String action = "";
