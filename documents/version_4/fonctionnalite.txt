@@ -1,0 +1,16 @@
+1. Affichage avec des sprites
+- Descriptif :
+La fenêtre n'affiche plus des figures de base (rond, ...) mais des sprites représentant les personnages et les objets.
+- Critères de validation :
+  - Les sprites concernent les murs, les monstres et le héros (+ fantômes).
+  - Ils sont chargés une fois pour toute au lancement de l'application et ils peuvent être affichés dans le JPanel grâce à la méthode drawImage.
+  - Vous pourrez utiliser l'image http://www.qcfdesign.com/?p=354 qui est un ensemble de sprites pour le jeu Desktop Dungeons. Ces sprites sont disposés régulièrement dans l'image et sont donc facile à extraire à partir de l'Image 
+ - Il est possible de charger une image (de type BufferedImage en mémoire grâce à la classe ImageIO et la méthode statique read).
+
+2. Fantômes
+- Descriptif : 
+Le labyrinthe dispose d'un nouveau type de monstre : les fantômes.
+- Critères de validation : 
+  - Les fantômes peuvent traverser des murs mais pas les autres personnages (les autres monstres ou le héros)
+  - Les autres monstres continuent à être bloqués par des murs.
+  - Les attaques des fantômes fonctionnent de la même manière que les attaques des monstres de base.
