@@ -40,7 +40,7 @@ public class Perso implements Entite{
                 (e.getX() - 1 == this.getX() && e.getY() == this.getY()) ||
                 (e.getX() + 1 == this.getX() && e.getY() == this.getY())){
             e.setPv(-1);
-            System.out.println("Le joueur à attaqué " + e.getClass().getName());
+            System.out.println("Le joueur a attaqué " + e.getClass().getName());
             System.out.println(e.getPv());
         }
     }
