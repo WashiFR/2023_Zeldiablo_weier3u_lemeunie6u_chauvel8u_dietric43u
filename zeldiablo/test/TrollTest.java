@@ -67,7 +67,7 @@ public class TrollTest {
     @Test
     public void test_04_attaquer() {
         troll.attaquer(laby.getPJ());
-        assertEquals(laby.getPJ().getPV(), 4, "Le personnage aurait du perdre un PV.");
+        assertEquals(laby.getPJ().getPv(), 4, "Le personnage aurait du perdre un PV.");
     }
 
 }

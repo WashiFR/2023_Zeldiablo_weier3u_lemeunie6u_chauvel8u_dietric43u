@@ -84,7 +84,7 @@ public class FantomeTest {
     @Test
     public void test_06_attaquer() {
         fantome.attaquer(laby.getPJ());
-        assertEquals(laby.getPJ().getPV(), 4, "Le personnage aurait du perdre un PV.");
+        assertEquals(laby.getPJ().getPv(), 4, "Le personnage aurait du perdre un PV.");
     }
 
 }

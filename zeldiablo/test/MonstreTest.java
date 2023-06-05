@@ -84,7 +84,7 @@ public class MonstreTest {
     @Test
     public void test_06_attaquer() {
         monstre.attaquer(laby.getPJ());
-        assertEquals(laby.getPJ().getPV(), 4, "Le personnage aurait du perdre un PV.");
+        assertEquals(laby.getPJ().getPv(), 4, "Le personnage aurait du perdre un PV.");
     }
 
 }
