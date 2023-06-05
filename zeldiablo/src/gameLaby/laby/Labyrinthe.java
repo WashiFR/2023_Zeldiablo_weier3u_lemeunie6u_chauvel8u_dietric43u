@@ -187,7 +187,7 @@ public class Labyrinthe {
      * @return jeu perdu
      */
     public boolean etrePerdu() {
-        return this.pj.getPV() <= 0;
+        return this.pj.getPv() <= 0;
     }
 
     // ##################################
