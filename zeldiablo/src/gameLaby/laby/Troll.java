@@ -24,7 +24,7 @@ public class Troll implements Entite{
     }
 
     public void attaquer(Perso p) {
-        p.setPV(-1);
+        p.setPv(-1);
     }
     @Override
     public void seDeplacer(int dx, int dy) {

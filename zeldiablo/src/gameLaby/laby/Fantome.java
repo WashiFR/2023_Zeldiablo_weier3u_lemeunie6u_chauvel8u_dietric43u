@@ -1,8 +1,20 @@
 package gameLaby.laby;
 
+/**
+ * Fantome
+ */
 public class Fantome implements  Entite{
+
+    /**
+     * attributs
+     */
     private int x,y, pv;
 
+    /**
+     * constructeur
+     * @param dx co X
+     * @param dy co Y
+     */
     public Fantome(int dx, int dy) {
         this.x = dx;
         this.y = dy;
@@ -39,8 +51,13 @@ public class Fantome implements  Entite{
     public int getY() {
         return this.y;
     }
+
+    /**
+     * Attque le joueur
+     * @param p joueur
+     */
     public void attaquer(Perso p) {
-        p.setPV(-1);
+        p.setPv(-1);
     }
 }
 
