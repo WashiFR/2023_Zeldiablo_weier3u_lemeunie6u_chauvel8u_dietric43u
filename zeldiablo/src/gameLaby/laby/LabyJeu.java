@@ -47,11 +47,18 @@ public class LabyJeu implements Jeu {
         }
 
         // enlève les entités mortes
-//        for (Entite e : laby.getEntites()){
-//            if (e.getPv() <= 0){
-//                laby.getEntites().remove(e);
-//            }
-//        }
+        for (Entite e : laby.getEntites()){
+            if (e.getPv() <= 0){
+                laby.getEntites().remove(e);
+                if (e instanceof Monstre)
+                    laby.getMonstre().remove(e);
+                else if (e instanceof Fantome)
+                    laby.getFantome().remove(e);
+                else if (e instanceof Troll)
+                    laby.getTrolls().remove(e);
+            }
+
+        }
 
         // deplace les monstres avec une proba de 5%
         for (Monstre m : laby.getMonstre()) {
@@ -65,6 +72,13 @@ public class LabyJeu implements Jeu {
             double randFantome = Math.random();
             if (randFantome <= 0.05)
                 this.laby.deplacer(f, "aleatoire");
+        }
+
+        //deplace les trolls avec une proba de 5%
+        for (Troll t : laby.getTrolls()) {
+            double randTroll = Math.random();
+            if (randTroll <= 0.05)
+                this.laby.deplacer(t, "aleatoire");
         }
 
         // Vérifier si le joueur a gagné

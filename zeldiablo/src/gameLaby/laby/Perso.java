@@ -27,6 +27,16 @@ public class Perso implements Entite{
         this.pv = 5;
     }
 
+    @Override
+    public void setPv(int pv) {
+        this.pv = pv + this.pv;
+    }
+
+    @Override
+    public int getPv() {
+        return this.pv;
+    }
+
     /**
      * permet de savoir si le personnage est en x,y
      *
@@ -48,8 +58,9 @@ public class Perso implements Entite{
                 (e.getX() == this.getX() && e.getY() + 1 == this.getY()) ||
                 (e.getX() - 1 == this.getX() && e.getY() == this.getY()) ||
                 (e.getX() + 1 == this.getX() && e.getY() == this.getY())){
-//            e.setPv(e.getPv() - 1);
-            System.out.println("Le joueur à attaqué " + e.getClass());
+            e.setPv(-1);
+            System.out.println("Le joueur à attaqué " + e.getClass().getName());
+            System.out.println(e.getPv());
         }
     }
 

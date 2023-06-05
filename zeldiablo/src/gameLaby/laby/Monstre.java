@@ -7,7 +7,7 @@ public class Monstre implements Entite {
     /**
      * position du monstre
      */
-    private int x, y;
+    private int x, y, pv;
 
     /**
      * constructeur
@@ -18,6 +18,7 @@ public class Monstre implements Entite {
     public Monstre(int dx, int dy) {
         this.x = dx;
         this.y = dy;
+        this.pv = 1;
     }
 
     /**
@@ -35,6 +36,16 @@ public class Monstre implements Entite {
     // ############################################
     // GETTER
     // ############################################
+
+    @Override
+    public void setPv(int pv) {
+        this.pv = pv + this.pv;
+    }
+
+    @Override
+    public int getPv() {
+        return this.pv;
+    }
 
 
     /**

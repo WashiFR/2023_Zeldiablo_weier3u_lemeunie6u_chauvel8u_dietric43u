@@ -19,6 +19,7 @@ public class Labyrinthe {
     // Constante ajoutée
     public static final char MONSTRE = 'M';
     public static final char FANTOME = 'F';
+    public static final char TROLL = 'T';
     public static final char AMULETTE = 'A';
     /**
      * constantes actions possibles
@@ -43,6 +44,8 @@ public class Labyrinthe {
      * les fantomes du labyrinthe
      */
     private ArrayList<Fantome> fantomes;
+
+    private ArrayList<Troll> trolls;
 
     /**
      * toutes les entites du jeu
@@ -113,6 +116,7 @@ public class Labyrinthe {
         this.monstres = new ArrayList<Monstre>();
         this.pj = null;
         this.fantomes = new ArrayList<Fantome>();
+        this.trolls = new ArrayList<Troll>();
         this.entites = new ArrayList<Entite>();
 
         // lecture des cases
@@ -154,6 +158,11 @@ public class Labyrinthe {
                         Fantome f = new Fantome(colonne, numeroLigne);
                         this.fantomes.add(f);
                         this.entites.add(f);
+                        break;
+                    case TROLL:
+                        Troll t = new Troll(colonne, numeroLigne);
+                        this.trolls.add(t);
+                        this.entites.add(t);
                         break;
                     default:
                         throw new Error("caractere inconnu " + c);
@@ -223,6 +232,10 @@ public class Labyrinthe {
         return fantomes;
     }
 
+    public ArrayList<Troll> getTrolls() {
+        return trolls;
+    }
+
     /**
      * return liste des entites du jeu
      * @return
@@ -277,7 +290,14 @@ public class Labyrinthe {
         return present;
     }
 
-
+    public boolean etreTroll(int x, int y) {
+        boolean present = false;
+        for (Troll t : trolls) {
+            if (t.etrePresent(x, y))
+                present = true;
+        }
+        return present;
+    }
 
 
     public void deplacer(Entite e, String action) {
@@ -293,6 +313,12 @@ public class Labyrinthe {
         if (e instanceof Monstre) {
             // si c'est pas un mur ou le joueur, on effectue le deplacement
             if (!this.murs[suivante[0]][suivante[1]] && !this.pj.etrePresent(suivante[0], suivante[1]) && !etreFantome(suivante[0], suivante[1])) {
+                // on met a jour le monstre
+                e.seDeplacer(suivante[0], suivante[1]);
+            }
+        } else if (e instanceof Troll) {
+            // si c'est pas un mur ou le joueur, on effectue le deplacement
+            if (!this.murs[suivante[0]][suivante[1]] && !this.pj.etrePresent(suivante[0], suivante[1]) && !etreFantome(suivante[0], suivante[1])&& !etreMonstre(suivante[0], suivante[1])) {
                 // on met a jour le monstre
                 e.seDeplacer(suivante[0], suivante[1]);
             }
@@ -313,7 +339,14 @@ public class Labyrinthe {
                 this.amulette = null;
             }
 
-
+            //attaque du troll si un personnage est a cote
+            if (etreTroll(this.pj.getX(), this.pj.getY() - 1) ||
+                    etreTroll(this.pj.getX(), this.pj.getY() + 1) ||
+                    etreTroll(this.pj.getX() - 1, this.pj.getY()) ||
+                    etreTroll(this.pj.getX() + 1, this.pj.getY())) {
+                this.trolls.get(0).attaquer(this.pj);
+                System.out.println("Troll attaque");
+            }
             // attaque du monstre si un personnage est a cote
             if (etreMonstre(this.pj.getX(), this.pj.getY() - 1) ||
                     etreMonstre(this.pj.getX(), this.pj.getY() + 1) ||
@@ -332,6 +365,17 @@ public class Labyrinthe {
 
             }
         }
+    }
+
+    public boolean isDead(int x, int y){
+        boolean mort = false;
+        for (Entite e : entites){
+            if (e.getX() == x && e.getY() == y && e.getPv() <= 0) {
+                mort = true;
+                break;
+            }
+        }
+        return mort;
     }
 
 
