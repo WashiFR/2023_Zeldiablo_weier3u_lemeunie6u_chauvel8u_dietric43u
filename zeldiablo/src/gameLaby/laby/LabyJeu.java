@@ -39,6 +39,20 @@ public class LabyJeu implements Jeu {
         if (clavier.droite)
             this.laby.deplacer(laby.getPJ(), Labyrinthe.DROITE);
 
+        // attaque du joueur
+        if (clavier.espace){
+            for (Entite e : laby.getEntites()){
+                laby.getPJ().attquer(e);
+            }
+        }
+
+        // enlève les entités mortes
+//        for (Entite e : laby.getEntites()){
+//            if (e.getPv() <= 0){
+//                laby.getEntites().remove(e);
+//            }
+//        }
+
         // deplace les monstres avec une proba de 5%
         for (Monstre m : laby.getMonstre()) {
             double randMonstre = Math.random();
