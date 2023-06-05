@@ -42,7 +42,7 @@ public class LabyJeu implements Jeu {
         // attaque du joueur
         if (clavier.espace){
             for (Entite e : laby.getEntites()){
-                laby.getPJ().attquer(e);
+                laby.getPJ().attaquer(e);
             }
         }
 

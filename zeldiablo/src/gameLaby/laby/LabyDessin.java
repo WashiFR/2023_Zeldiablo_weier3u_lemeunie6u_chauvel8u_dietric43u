@@ -15,7 +15,7 @@ public class LabyDessin implements DessinJeu {
     /**
      * Taille d'une case en pixel
      */
-    private static final int TAILLE_CASE = 50;
+    private static final int TAILLE_CASE = 40;
 
     /**
      * affichage d'un jeu de type labyrinthe
@@ -44,8 +44,17 @@ public class LabyDessin implements DessinJeu {
                     gc.setFill(Color.PURPLE);
                     gc.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
                 }
+                if (laby.etreFantome(i, j)) {
+                    gc.setFill(Color.BLUE);
+                    gc.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                }
+                if (laby.getDepart()[0] == i && laby.getDepart()[1] == j) {
+                    gc.setFill(Color.GREEN);
+                    gc.fillOval(i * TAILLE_CASE, j * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
+                }
             }
         }
+
 
         //dessin joueur
         gc.setFill(Color.RED);
@@ -60,5 +69,6 @@ public class LabyDessin implements DessinJeu {
             double ay = laby.getAmulette().getY();
             gc.fillOval(ax * TAILLE_CASE, ay * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE);
         }
+
     }
 }

@@ -53,7 +53,7 @@ public class Perso implements Entite{
      * Attque l'entité si elle est proche du joueur
      * @param e entité
      */
-    public void attquer(Entite e){
+    public void attaquer(Entite e){
         if((e.getX() == this.getX() && e.getY() - 1 == this.getY()) ||
                 (e.getX() == this.getX() && e.getY() + 1 == this.getY()) ||
                 (e.getX() - 1 == this.getX() && e.getY() == this.getY()) ||

@@ -367,17 +367,6 @@ public class Labyrinthe {
         }
     }
 
-    public boolean isDead(int x, int y){
-        boolean mort = false;
-        for (Entite e : entites){
-            if (e.getX() == x && e.getY() == y && e.getPv() <= 0) {
-                mort = true;
-                break;
-            }
-        }
-        return mort;
-    }
-
 
     public String actionAleatoire() {
         int choix = (int) (Math.random() * 4);
