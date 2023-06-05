@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant Main
+create "l:Labyrinthe" as laby
+Main -> laby : new
+create "p:Perso" as perso
+Main -> perso : new
+create "monstre:Monstre" as monstre
+Main -> monstre : new
+Main -> perso : attaquer(monstre)
+activate perso
+perso -> monstre : setPV(-1)
+activate monstre
+monstre --> perso : void
+deactivate monstre
+perso --> Main : void
+deactivate perso
+@enduml
