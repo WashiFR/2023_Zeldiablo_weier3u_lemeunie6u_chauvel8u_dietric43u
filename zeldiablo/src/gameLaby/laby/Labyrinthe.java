@@ -43,6 +43,11 @@ public class Labyrinthe {
      * les fantomes du labyrinthe
      */
     private ArrayList<Fantome> fantomes;
+
+    /**
+     * toutes les entites du jeu
+     */
+    private ArrayList<Entite> entites;
     /**
      * l'amulette du labyrinthe
      */
@@ -108,6 +113,7 @@ public class Labyrinthe {
         this.monstres = new ArrayList<Monstre>();
         this.pj = null;
         this.fantomes = new ArrayList<Fantome>();
+        this.entites = new ArrayList<Entite>();
 
         // lecture des cases
         String ligne = bfRead.readLine();
@@ -137,13 +143,17 @@ public class Labyrinthe {
                         this.depart = new int[]{colonne, numeroLigne};
                         break;
                     case MONSTRE:
-                        this.monstres.add(new Monstre(colonne, numeroLigne));
+                        Monstre m = new Monstre(colonne, numeroLigne);
+                        this.monstres.add(m);
+                        this.entites.add(m);
                         break;
                     case AMULETTE:
                         this.amulette = new Amulette(colonne, numeroLigne);
                         break;
                     case FANTOME:
-                        this.fantomes.add(new Fantome(colonne, numeroLigne));
+                        Fantome f = new Fantome(colonne, numeroLigne);
+                        this.fantomes.add(f);
+                        this.entites.add(f);
                         break;
                     default:
                         throw new Error("caractere inconnu " + c);
@@ -212,6 +222,14 @@ public class Labyrinthe {
     public ArrayList<Fantome> getFantome() {
         return fantomes;
     }
+
+    /**
+     * return liste des entites du jeu
+     * @return
+     */
+    public ArrayList<Entite> getEntites() {
+        return entites;
+    }
     /**
      * return le personnage
      * @return personnage
@@ -249,8 +267,6 @@ public class Labyrinthe {
         }
         return present;
     }
-
-
 
     public boolean etreFantome(int x, int y) {
         boolean present = false;
