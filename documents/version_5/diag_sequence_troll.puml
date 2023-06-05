@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant Main
+create "l:Labyrinthe" as laby
+Main -> laby : new
+create "t:Troll" as troll
+Main -> troll : new
+create "p:Perso" as perso
+Main -> perso : new
+Main -> troll : attaquer(p)
+activate troll
+troll -> perso : setPV(-1)
+activate perso
+perso --> troll : void
+deactivate perso
+troll --> Main : void
+deactivate troll
+Main -> laby : deplacer(t, HAUT)
+activate laby
+laby -> troll : seDeplacer(dx:int,dy:int)
+activate troll
+troll --> laby : void
+deactivate troll
+laby --> Main : void
+deactivate laby
+@enduml
