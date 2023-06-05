@@ -1,0 +1,11 @@
+Pour l'itération numéro trois nous avons choisi de rendre l'interface graphique plus belle et plus facile à utiliser et l'apparition d'un nouveau monstre : le fantome.
+
+Tout d'abord un fantôme est un monstre qui se déplace aléatoirement sur le labyrinthe et a pour spécialité de pouvoir passer à travers les murs. Mais en passant à travers les murs il pourrait passer en dehors du labyrinthe il faut donc une condition qui permette de ne pas le laisser sortir.
+Ce fantôme a des fonctionnalités très similaires à Monstre (seDeplacer() , etrePresent()) c'est pour cela que la création d'une interface Entite est nécessaire.
+Cette interface est implémentée par les classes Monstre, Fantome et Perso et laissera ces entités partager les fonctions getX(), getY() et etrePresent() comme ça nous avons juste à les redéfinir dans leur classe.
+
+
+Puis pour rendre le jeu plus beau graphiquement nous avons implémenté les sprites. Notre jeu a donc des graphismes précis pour les murs, le sol, la case de départ, les monstres et le personnage.
+Il est nécessaire pour avoir ses images en jeu de créer une classe LabyImages qui va charger les images. On appellera dans le mainLaby la création d'un objet labyImage plutot qu'un objet labyDessin.
+Cette classe LabyImages va charger les images et chercher les élements dans le labyrinthe afin d'affichier les images correspondantes.
+
