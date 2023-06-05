@@ -8,4 +8,7 @@ Cette interface est implémentée par les classes Monstre, Fantome et Perso et l
 Puis pour rendre le jeu plus beau graphiquement nous avons implémenté les sprites. Notre jeu a donc des graphismes précis pour les murs, le sol, la case de départ, les monstres et le personnage.
 Il est nécessaire pour avoir ses images en jeu de créer une classe LabyImages qui va charger les images. On appellera dans le mainLaby la création d'un objet labyImage plutot qu'un objet labyDessin.
 Cette classe LabyImages va charger les images et chercher les élements dans le labyrinthe afin d'affichier les images correspondantes.
+Pour cette fonctionnalité, nous avons eu un problème pour le dernier critère de validation.
+Nous n'avons pas réussi à faire fonctionner la classe ImageIO qui permet de charger une image avec un bufferedReader.
+À la place, nous avons utilisé des constantes qui contiennent le chemin des images et qui instancie les images avec cette constante.
 
