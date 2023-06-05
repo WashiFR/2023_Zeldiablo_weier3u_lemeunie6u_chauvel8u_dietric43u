@@ -3,7 +3,7 @@
 participant Main
 participant "labyImage:LabyImage" as labyImage
 participant "laby:Labyrinthe" as labyrinthe
-participant "monster:Monster" as monster
+participant "d:Demon" as demon
 Main -> labyImage : dessinerJeu()
 activate labyImage
 labyImage -> labyrinthe : getMur()
@@ -12,15 +12,15 @@ labyImage <-- labyrinthe : mur
 deactivate labyrinthe
 labyImage -> labyrinthe : getMonstre()
 activate labyrinthe
-labyrinthe -> monster : etrePresent()
-activate monster
-alt monstre present
-    labyrinthe <-- monster : true
-else monstre absent
-    labyrinthe <-- monster : false
+labyrinthe -> demon : etrePresent()
+activate demon
+alt demon present
+    labyrinthe <-- demon : true
+else demon absent
+    labyrinthe <-- demon : false
 end
-deactivate monster
-labyImage <-- labyrinthe : monstre
+deactivate demon
+labyImage <-- labyrinthe : demon
 deactivate labyrinthe
 
 @enduml

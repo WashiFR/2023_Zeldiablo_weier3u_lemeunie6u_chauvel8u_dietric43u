@@ -6,14 +6,14 @@ create "l:Labyrinthe" as laby
 Main -> laby : new
 create "p:Perso" as perso
 Main -> perso : new
-create "monstre:Monstre" as monstre
-Main -> monstre : new
-Main -> perso : attaquer(monstre)
+create "d:Démon" as demon
+Main -> demon : new
+Main -> perso : attaquer(demon)
 activate perso
-perso -> monstre : setPV(-1)
-activate monstre
-monstre --> perso : void
-deactivate monstre
+perso -> demon : setPV(-1)
+activate demon
+demon --> perso : void
+deactivate demon
 perso --> Main : void
 deactivate perso
 @enduml

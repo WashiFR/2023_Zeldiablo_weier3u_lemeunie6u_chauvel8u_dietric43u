@@ -4,11 +4,18 @@
 participant Main as m
 participant "jeuLaby:LabyJeu" as j
 participant "laby:Labyrinthe" as l
-participant "amulette:Amulette" as a
+create "p:Perso" as perso
+m -> perso : new
+create "amulette:Amulette" as a
+m -> a : new
 m -> j : update(double secondes, Clavier clavier)
 activate j
-j -> l : deplacerPerso(Clavier clavier)
+j -> l : deplacer(p, HAUT)
 activate l
+l -> perso : seDeplacer(dx:int,dy:int)
+activate perso
+perso --> l : void
+deactivate perso
 l -> a : etrePresent(int dx, int dy)
 activate a
 alt this.x = dx and this.y = dy

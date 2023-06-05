@@ -2,17 +2,17 @@
 'https://plantuml.com/sequence-diagram
 
 participant Main
-create "m:Monstre" as monstre
-Main -> monstre : new
+create "d:Démon" as demon
+Main -> demon : new
 create "p:Perso" as perso
 Main -> perso
-Main -> monstre : attaquer(p)
-activate monstre
-monstre -> perso : setPV(-1)
+Main -> demon : attaquer(p)
+activate demon
+demon -> perso : setPV(-1)
 activate perso
-perso --> monstre : void
+perso --> demon : void
 deactivate perso
-monstre --> Main : void
-deactivate monstre
+demon --> Main : void
+deactivate demon
 
 @enduml

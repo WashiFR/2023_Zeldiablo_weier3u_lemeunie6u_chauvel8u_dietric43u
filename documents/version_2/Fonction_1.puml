@@ -3,13 +3,10 @@
 
 participant Main
 participant "l:Labyrinthe" as labyrinthe
-participant "m:Monstre" as monstre
+participant "d:Demon" as demon
 create labyrinthe
 Main -> labyrinthe : new
-create monstre
-labyrinthe -> monstre : new
-activate monstre
-deactivate monstre
-monstre -> monstre : Monstre(int dx, int dy)
+create demon
+labyrinthe -> demon : new
 
 @enduml
