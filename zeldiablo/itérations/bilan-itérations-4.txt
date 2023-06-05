@@ -1,0 +1,11 @@
+Pour cette itération, nous avons ajouté un menu pour le jeu qui laisse deux choix : Quitter le jeu ou le lancer. Quand le programme commence le menu est lancé et si on appuie sur jouer le jeu se lance si la fenêtre se ferme.
+Quand on perd ou on gagne le jeu, le menu devrait se relancer pour décider de relancer une partie ou non mais ce n'est pas le cas. Il faut donc relancer le programme pour rejouer.
+Cela est dû au fait que l'on lance le menu avec launch dans le moteurJeu et que notre programme ne peut pas launch plusieurs fois.
+Ce menu est réalisé avec JavaFx nous avons ainsi dû ajouter un module qui nous manquait pour pouvoir l'utiliser.
+
+En plus de cela nous avons ajouté une nouvelle entité : le Troll. Il démarre le jeu avec 3 points de vie et peut en perdre en se faisant attaquer par le personnage.
+Le troll récupère des points de vie chaque tour où il n'est pas en interaction avec quelque chose. Pour cette classe troll, nous l'avons implémenté par entité afin qu'elle récupère les méthodes de toutes les entités.
+La différence est que cette entité récupère des pv chaque tour donc nous devons créer des méthodes getPV et setPV qui seront utilisées par le moteurJeu pour récupérer et modifier les pv du troll.
+
+La dernière fonctionnalité que nous avons ajoutée est la possibilité que le personnage attaque les entités. Pour cela nous avons ajouté une méthode attaquer dans la classe personnage qui prend en paramètre une entité et lui enlève 1 pv.
+Quand on est appui sur la touche espace, le personnage attaque l'entité située à côté de lui. S'il n'y a pas d'entité à côté de lui, rien ne se passe.

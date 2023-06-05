@@ -1,0 +1,158 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+package moteurJeu {
+interface DessinJeu{
++ dessinerJeu(jeu:Jeu, canvas:Canvas)
+}
+
+interface Jeu{
++update(secondes : double, clavier : Clavier)
++init()
++etreFini() : boolean
+}
+}
+
+package gameLaby.laby {
+class Monstre{
+- x:int
+- y:int
+- pv:int
++ Monstre(dx:int,dy:int)
++ etrePresent(dx:int,dy:int) : boolean
++ getX() : int
++ getY() : int
++ getPV() : int
++ attaquer(p:Perso)
++ seDeplacer(dx:int, dy:int)
++ setPV(ajout:int)
+}
+Entite <.. Monstre
+
+class Perso{
+- x:int
+- y:int
+- pv:int
++ Perso(dx:int, dy:int)
++ etrePresent(dx:int, dy:int) : boolean
++ getX() : int
++ getY() : int
++ getPV() : int
++ setPV(ajout:int)
++ seDeplacer(dx:int, dy:int)
+}
+Entite <.. Perso
+
+class Fantome{
+- x:int
+- y:int
+- pv:int
++ etrePresent(dx:int,dy:int) : boolean
++ seDeplacer(dx:int,dy:int)
++ getX() : int
++ getY() : int
++ getPV() : int
++ attaquer(p:Perso)
++ setPV(ajout:int)
+}
+Entite <.. Fantome
+
+class Troll{
+-x:int
+-y:int
+-vie:int
++etrePresent(dx:int,dy:int) : boolean
++seDeplacer(dx:int,dy:int)
++getX() :int
++getY() : int
++getPV() : int
++attaquer(p:Perso)
++setPV(ajout:int)
+}
+Entite <.. Troll
+
+class Labyrinthe{
++ <static> MUR : char
++ <static> PJ : char
++ <static> VIDE : char
++ <static> MONSTRE : char
++ <static> FANTOME : char
++ <static> AMULETTE : char
++ <static> HAUT : string
++ <static> BAS : string
++ <static> GAUCHE : string
++ <static> DROITE : string
++ murs : boolean[][]
+- amuletteTrouvee : boolean
+- depart : int[]
++ getSuivant(x : int, y : int, String : action) : int[]
++ Labyrinthe(nom : String)
++ etreFini() : boolean
++ etrePerdu() : boolean
++ getLengthY() : int
++ getLength() : int
++ getMur(x : int, y : int) : boolean
++ getMonstre() : ArrayList<Monstre>
++ getFantome() : ArrayList<Fantome>
++ getPJ() : Perso
++ getAmulette() : Amulette
++ getDepart() : int[]
++ etreMonstre(x : int, y : int) : boolean
++ etreFantome(x : int, y : int) : boolean
++ deplacer(e:Entite, action:String)
++ actionAleatoire() : String
+}
+Labyrinthe "1" -> "1" Perso : -pj
+Labyrinthe "1" -> "*" Monstre : -monstres
+Labyrinthe "1" -> "*" Fantome : -fantomes
+Labyrinthe "1" -> "1" Amulette : -amulette
+Labyrinthe "1" -> "*" Troll : -trolls
+
+class LabyImage{
+- <static> PATH : String
+- <static> MUR : String
+- <static> PJ : String
+- <static> MONSTRE : String
+- <static> SOL : String
+- <static> AMULETTE : String
+- <static> DEPART : String
+- <static> FANTOME : String
+- <static> TAILLE_CASE : double
++ dessinerJeu(jeu:Jeu, canvas:Canvas)
+}
+DessinJeu <.. LabyImage
+
+class LabyJeu{
++LabyJeu()
++update(secondes : double, clavier : Clavier)
++init()
++etreFini() : boolean
++etrePerdu() : boolean
++getLaby() : Labyrinthe
+}
+Jeu <.. LabyJeu
+LabyJeu "1" -> "1" Labyrinthe: -laby
+
+class MainLaby{
+- <static> main(args : String[])
+}
+MainLaby -> LabyImage : create
+MainLaby -> LabyJeu : create
+
+class Amulette{
+- x:int
+- y:int
++Amulette(x:int,y:int)
++etrePresent(dx:int,dy:int) : boolean
++getX() : int
++getY() : int
+}
+
+interface Entite{
++etrePresent(dx:int,dy:int) : boolean
++seDeplacer(dx:int,dy:int)
++getX() : int
++getY() : int
+}
+}
+@enduml

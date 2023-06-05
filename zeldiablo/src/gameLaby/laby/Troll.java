@@ -11,6 +11,9 @@ public class Troll implements Entite{
     @Override
     public void setPv(int pv) {
         this.vie = pv + this.vie ;
+        if(this.vie > 3){
+            this.vie = 3;
+        }
     }
 
     @Override
@@ -24,7 +27,7 @@ public class Troll implements Entite{
     }
 
     public void attaquer(Perso p) {
-        p.setPV(-1);
+        p.setPv(-1);
     }
     @Override
     public void seDeplacer(int dx, int dy) {

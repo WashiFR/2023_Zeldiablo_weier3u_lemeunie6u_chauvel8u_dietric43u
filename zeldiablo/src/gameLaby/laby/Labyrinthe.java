@@ -187,7 +187,7 @@ public class Labyrinthe {
      * @return jeu perdu
      */
     public boolean etrePerdu() {
-        return this.pj.getPV() <= 0;
+        return this.pj.getPv() <= 0;
     }
 
     // ##################################
@@ -333,6 +333,9 @@ public class Labyrinthe {
             if (!this.murs[suivante[0]][suivante[1]] && !etreMonstre(suivante[0], suivante[1]) && !etreFantome(suivante[0], suivante[1])) {
                 // on met a jour personnage
                 this.pj.seDeplacer(suivante[0], suivante[1]);
+                for (Troll tr : this.trolls){
+                    tr.setPv(tr.getPv()+1);
+                }
             }
             if (!amuletteTrouvee && amulette.etrePresent(this.pj.getX(), this.pj.getY())) {
                 amuletteTrouvee = true;

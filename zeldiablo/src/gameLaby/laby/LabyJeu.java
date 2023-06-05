@@ -57,7 +57,6 @@ public class LabyJeu implements Jeu {
                 else if (e instanceof Troll)
                     laby.getTrolls().remove(e);
             }
-
         }
 
         // deplace les monstres avec une proba de 5%
