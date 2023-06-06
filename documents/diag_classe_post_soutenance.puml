@@ -1,0 +1,211 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+
+package gameLaby.laby {
+
+
+abstract class Entite{
+-x : int
+-y : int
+-pv : int
++ Entite(dx : int, dy : int)
++ etrePresent(dx : int, dy : int) : boolean
++ seDeplacer(dx : int, dy : int)
+{abstract} + attaquer(e : Entite)
++ getX() : int
++ getY() : int
++ getPv() : int
+{abstract} + setPv(ajout : int)
+}
+
+
+class Perso{
++ Perso(dx : int, dy : int)
++ attaquer(e : Entite)
++ setPv(ajout : int)
+}
+Entite <|-- Perso
+
+abstract class Monstre{
++ Monstre(dx : int, dy : int)
++ attaquer(e : Entite)
+{abstract} + setPv(ajout : int)
+}
+Entite <|-- Monstre
+
+ class Demon{
++ Demon(dx : int, dy : int)
++ setPv(ajout : int)
+}
+Monstre <|-- Demon
+
+class Fantome{
++ Fantome(dx:int, dy:int)
++ setPv(ajout:int)
+}
+Monstre <|-- Fantome
+
+class Troll{
++ Troll(dx : int, dy : int)
++ setPv(ajout : int)
+}
+Monstre <|-- Troll
+
+class Amulette{
+- x : int
+- y : int
++Amulette(x : int, y : int)
++etrePresent(dx : int, dy : int) : boolean
++getX() : int
++getY() : int
+}
+
+
+class Labyrinthe{
+{static} + MUR : char
+{static} + PJ : char
+{static} + VIDE : char
+{static} + MONSTRE : char
+{static} + FANTOME : char
+{static} + TROLL : char
+{static} + AMULETTE : char
+{static} + HAUT : string
+{static} + BAS : string
+{static} + GAUCHE : string
+{static} + DROITE : string
+- murs : boolean[][]
+- amuletteTrouvee : boolean
+- depart : int[]
+{static} + getSuivant(x : int, y : int, action : String) : int[]
++ Labyrinthe(nom : String)
++ etreFini() : boolean
++ etrePerdu() : boolean
++ getLengthY() : int
++ getLength() : int
++ getMur(x : int, y : int) : boolean
++ getDemon() : ArrayList<Demon>
++ getFantome() : ArrayList<Fantome>
++ getTrolls() : ArrayList<Troll>
++ getMonstre() : ArrayList<Monstre>
++ getPJ() : Perso
++ getAmulette() : Amulette
++ getDepart() : int[]
++ etreMonstre(x : int, y : int) : boolean
++ etreFantome(x : int, y : int) : boolean
++ etreTroll(x : int, y : int) : boolean
++ etreMechant(x : int, y : int) : boolean
++ deplacer(e : Entite, action : String)
++ actionAleatoire() : String
+}
+
+Perso "1" <-- "1" Labyrinthe : - pj
+Demon "*" <-- "1" Labyrinthe : - demons
+Fantome "*" <-- "1" Labyrinthe : - fantomes
+Troll "*" <-- "1" Labyrinthe : - trolls
+Amulette "1" <-- "1" Labyrinthe : - amulette
+
+class LabyJeu{
++ LabyJeu()
++update(secondes : double, clavier : Clavier)
++init()
++etreFini() : boolean
++etrePerdu() : boolean
++getLaby() : Labyrinthe
+}
+LabyJeu "1" --> "1" Labyrinthe: - laby
+
+class MainLaby{
+{static} + main(args : String[])
+}
+
+
+class LabyDessin{
+{static} - TAILLE_CASE : int
++ dessinJeu(jeu : Jeu, canvas : Canvas)
+}
+
+
+
+class LabyImage{
+{static} + PATH : String
+{static} + MUR : String
+{static} + PJ : String
+{static} + MONSTRE : String
+{static} + SOL : String
+{static} + AMULETTE : String
+{static} + DEPART : String
+{static} + FANTOME : String
+{static} + TROLL : String
+{static} + TAILLE_CASE : String
++ dessinJeu(jeu : Jeu, canvas : Canvas)
+}
+
+class Main{
+{static} + main(args : String[])
+
+}
+
+}
+LabyImage ..|> gameLaby.moteurJeu.DessinJeu
+LabyDessin ..|> gameLaby.moteurJeu.DessinJeu
+LabyJeu ..|> gameLaby.moteurJeu.Jeu
+
+
+package gameLaby.moteurJeu {
+
+class Clavier{
++ haut : boolean
++ bas : boolean
++ gauche : boolean
++ droite : boolean
++ espace : boolean
++ appuyerTouche(event : KeyEvent)
++ relacherTouche(event : KeyEvent)
+}
+
+interface DessinJeu{
++ dessinerJeu(jeu : Jeu, canvas : Canvas)
+}
+
+class FrameStats{
+- frameCount : long
+- meanFrameInterval : long
+- text : ReadOnlyStringWrapper
++ getFrameCount() : long
++ getMeanFrameInterval() : double
++ addFrame(frameDurationNanos : long)
++ getText() : String
++ textProperty() : ReadOnlyStringProperty
++ toString() : String
+}
+
+interface Jeu{
++ update(secondes : double, clavier : Clavier)
++ init()
++ etreFini() : boolean
+}
+
+class MoteurJeu{
+{static} - FPS : double
+{static} - dureeFPS : double
+{static} - WIDTH : double
+{static} - HEIGHT : double
+{static} + launch(jeu : Jeu, dessin : DessinJeu)
+{static} + setFPS( FPSSouhaitees : int)
+{static} + setTaille(width : double, height : double)
++ start(primaryStage Stage)
+- startAmination(canvas : Canvas)
+}
+
+Jeu "1" <-- "1" MoteurJeu : {static} - jeu
+FrameStats "1" <-- "1" MoteurJeu : - frameStats
+DessinJeu "1" <-- "1" MoteurJeu : {static} - dessin
+Clavier "1" <-- "1" MoteurJeu : + controle
+
+}
+
+
+
+@enduml
