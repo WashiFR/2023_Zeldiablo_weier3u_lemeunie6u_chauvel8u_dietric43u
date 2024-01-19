@@ -15,7 +15,7 @@ public class LabyImage implements DessinJeu {
     /**
      * Chemin vers les images
      */
-    public static final String PATH = "file:./src/gameLaby/img/";
+    public static final String PATH = "file:./zeldiablo/src/gameLaby/img/";
 
     /**
      * Constantes pour les images
